@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import routes from "./common/routes";
+import MyResultsContainer from "./containers/MyResultsContainer";
+import LoginContainer from "./containers/LoginContainer";
+import RegisterContainer from "./containers/RegisterContainer";
+import ProfileContainer from "./containers/ProfileContainer";
+
+const appRoutes = routes.map((i: any, index: number) => (
+  <Route
+    path={i.path}
+    key={`route${index}`}
+    element={`<${i.element.displayName} />`}
+  />
+));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MyResultsContainer />}></Route>
+          <Route path="/login" element={<LoginContainer />}></Route>
+          <Route path="/signup" element={<RegisterContainer />}></Route>
+          <Route path="/profile" element={<ProfileContainer />}></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
