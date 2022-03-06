@@ -5,6 +5,8 @@ import React, { useEffect, useState } from "react";
 import mainService from "../services/mainService";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { NumericLiteral } from "typescript";
+import { useFormik } from "formik";
+import { urlToHttpOptions } from "url";
 
 interface Option {
   id: number;
@@ -28,28 +30,154 @@ interface Question {
 }
 
 interface Answer {
-  option_id: number;
+  option_id: number | null;
   value: any;
 }
 
-const TestContainer = () => {
-  const [currentQuestion, setCurrentQuestion] = useState<number>(1);
-  const [questions, setQuestions] = useState<Question[]>();
+interface CurrentAnswer {
+  option_id: number | null;
+  value: any | null;
+  type: string;
+}
 
-  const nextQuestion = () => {
-    setCurrentQuestion(currentQuestion + 1);
+const TestContainer = () => {
+  const [currentOrder, setCurrentOrder] = useState<number>(1);
+  const [questions, setQuestions] = useState<Question[]>();
+  const [answers, setAnswers] = useState<Answer[]>([]);
+  const [isButtonQuestion, setIsButtonQuestion] = useState<boolean>(false);
+
+  const validate = (values: any) => {
+    const errors: any = {};
+
+    if (values.option_id === null || values.value == "") {
+      errors.option_id = "Answer is Required";
+    }
+
+    return errors;
+  };
+
+  const nextQuestion = async (question: number) => {
+    if (
+      questions &&
+      questions[questions.length - 1].order <= currentOrder + question
+    ) {
+      addAnswerValue(formik.values.option_id!, formik.values.value);
+      await Promise.resolve();
+
+      try {
+        const result = await mainService.endTest(answers);
+      } catch (e) {
+        alert(e);
+      }
+    }
+    setCurrentOrder(currentOrder + question);
+  };
+
+  const addAnswerValue = (option_id: number, value: any) => {
+    setAnswers((prevState) => [
+      ...prevState,
+      { option_id: option_id, value: value },
+    ]);
+  };
+
+  const onChangeAnswer = async (
+    event: any,
+    option_id: number,
+    type: string
+  ) => {
+    formik.setFieldValue("option_id", option_id);
+    formik.setFieldValue("value", event.target.value);
+    if (type === "select") {
+      await Promise.resolve();
+      formik.submitForm();
+    }
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      option_id: null,
+      value: "",
+    },
+    validate,
+    validateOnBlur: false,
+    validateOnChange: false,
+    onSubmit: async (values, { resetForm }) => {
+      const question = questions?.find((q) => q.order === currentOrder + 1);
+      const updatedAnswers = [
+        ...answers,
+        { option_id: values.option_id, value: values.value },
+      ];
+      addAnswerValue(values.option_id!, values.value);
+
+      if (
+        question?.option_id !== null &&
+        !updatedAnswers.some((a) => a.option_id === question?.option_id)
+      ) {
+        nextQuestion(2);
+      } else {
+        nextQuestion(1);
+      }
+
+      console.log(answers);
+
+      if (
+        question?.option_id !== null &&
+        question?.option_id !== values.option_id
+      ) {
+        nextQuestion(2);
+      } else {
+        nextQuestion(1);
+      }
+
+      if (questions && questions[questions.length - 1].order <= currentOrder) {
+        addAnswerValue(values.option_id!, values.value);
+        await Promise.resolve();
+
+        try {
+          const result = await mainService.endTest(answers);
+        } catch (e) {
+          alert(e);
+        }
+      }
+
+      resetForm();
+    },
+  });
+
+  const checkIsButtonQuestion = (questions: Question[]) => {
+    const question =
+      questions &&
+      questions.find((question: Question) => question.order === currentOrder);
+
+    if (question && question.options.some((x) => x.type !== "select")) {
+      setIsButtonQuestion(false);
+    } else {
+      setIsButtonQuestion(true);
+    }
   };
 
   useEffect(() => {
     (async () => {
-      loadQuestions();
+      await loadQuestions().then(() => {
+        console.log(questions);
+      });
     })();
   }, []);
 
+  useEffect(() => {
+    checkIsButtonQuestion(questions!);
+  }, [currentOrder]);
+
   const loadQuestions = async () => {
     const result = await mainService.startTest();
-    setQuestions(result && result.data.survey.questions);
-    console.log(result && result.data.survey.questions);
+    const sortedResult =
+      result &&
+      result.data.survey.questions.sort(
+        (a: Question, b: Question) => a.order - b.order
+      );
+    setQuestions(sortedResult);
+    checkIsButtonQuestion(sortedResult);
+    console.log(sortedResult);
   };
 
   const elementForOption = (option: Option) => {
@@ -57,24 +185,33 @@ const TestContainer = () => {
       case "number":
         return (
           <input
-            onKeyPress={(event) => {
-              if (!/[0-9]/.test(event.key)) {
-                event.preventDefault();
-              }
-            }}
+            id="value"
+            name="value"
+            type="number"
+            onChange={(e) => onChangeAnswer(e, option.id, option.type)}
+            value={formik.values.value}
           />
         );
       case "select": {
-        return <button>{option.title}</button>;
+        return (
+          <button
+            type="button"
+            value={option.title}
+            onClick={(e) => onChangeAnswer(e, option.id, option.type)}
+          >
+            {option.title}
+          </button>
+        );
       }
       case "date":
         return (
           <MobileDatePicker
             label="Date of birthday"
             inputFormat="MM/dd/yyyy"
-            value={null}
+            value={formik.values.value}
             onChange={(val) => {
-              console.log("___", val);
+              formik.setFieldValue("value", val);
+              formik.setFieldValue("option_id", option.id);
             }}
             renderInput={(params) => <TextField {...params} />}
           />
@@ -102,10 +239,17 @@ const TestContainer = () => {
   return (
     <div>
       <h4>New test</h4>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        {renderQuestion(currentQuestion)}
-        <button onClick={() => nextQuestion()}>Next question</button>
-      </LocalizationProvider>
+      <form onSubmit={formik.handleSubmit}>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          {renderQuestion(currentOrder)}
+          {formik.errors.option_id ? (
+            <div>{formik.errors.option_id}</div>
+          ) : null}
+          {isButtonQuestion === false ? (
+            <button type="submit">Next question</button>
+          ) : null}
+        </LocalizationProvider>
+      </form>
     </div>
   );
 };
