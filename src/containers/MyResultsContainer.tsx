@@ -6,9 +6,14 @@ import authService from "../services/authService";
 const MyResultsContainer = () => {
   let navigate = useNavigate();
 
+  const logOut = () => {
+    navigate("/login");
+  };
+
   return (
     <div>
       <h4>My results</h4>
+      <button onClick={() => logOut()}>Logout</button>
     </div>
   );
 };

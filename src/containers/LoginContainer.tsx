@@ -1,10 +1,17 @@
 import { useFormik } from "formik";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import authService from "../services/authService";
 
 const LoginContainer = () => {
   let navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token !== null) {
+      localStorage.removeItem("token");
+    }
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -15,6 +22,8 @@ const LoginContainer = () => {
     onSubmit: async (values) => {
       try {
         const result = await authService.login(values.email, values.password);
+        console.log("salam");
+        console.log(localStorage.getItem("token"));
         navigate("/");
       } catch (e) {
         alert(e);
