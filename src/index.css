@@ -1,13 +1,188 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: "Manrope", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+p,
+span {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  outline: none;
+  border: none;
+  background: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.app-container {
+  max-width: 375px;
+  margin: 0 auto;
+  padding: 44px 16px;
+  height: 100vh;
+}
+
+.app-title {
+  margin-bottom: 37px;
+  font-weight: bold;
+  text-align: center;
+  color: #1a2a2e;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.app-subtitle {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+/*Wrappers*/
+
+.title-wrapper {
+  position: relative;
+}
+
+/*Wrappers*/
+
+/*Buttons*/
+
+.app-btn {
+  margin-top: 32px;
+  padding: 15px 0;
+  width: 100%;
+  background-color: #dee0fa;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 20px;
+  text-align: center;
+  color: #1a2a2e;
+}
+
+.app-btn:disabled {
+  color: #979ca2;
+}
+
+.options-btn {
+  display: block;
+  margin-left: auto;
+}
+
+.arrow-btn {
+  position: absolute;
+  top: 0px;
+  transform: rotate(180deg);
+  left: 0;
+}
+
+/*Buttons*/
+
+.policy {
+  margin-top: 48px;
+  display: flex;
+  align-items: flex-start;
+}
+.policy-text {
+  font-size: 13px;
+  line-height: 18px;
+  color: #1a2a2e;
+}
+
+.policy-link {
+  color: #3c88f8;
+}
+
+span.MuiCheckbox-root {
+  padding: 0;
+  margin-right: 12px;
+}
+
+.sex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sex__btn {
+  width: 47%;
+  padding: 18px 16px;
+  background-color: #eff4f9;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.sex-btn--active {
+  border: 2px solid #c1e7ff;
+}
+
+.category-title {
+  margin: 32px 0 16px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1a2a2e;
+}
+
+.account {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.sign-up {
+  display: block;
+  margin: 8px auto;
+  text-align: center;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+  color: #3c88f8;
+}
+
+.change--blue {
+  display: block;
+  margin: 32px 0 0 0;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #3c88f8;
+}
+
+.background-start {
+  background: linear-gradient(
+    180deg,
+    #dfe1fa 0%,
+    #d4d4f5 48.44%,
+    #f6f6f9 76.04%,
+    hsl(240, 100%, 96%) 100%
+  );
+}
+
+.background-result {
+  background-color: #e9f6ff;
 }

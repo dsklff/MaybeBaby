@@ -1,0 +1,63 @@
+.MuiFormControl-root {
+  width: 100%;
+  background-color: #f6f9fc;
+}
+
+.MuiFormControl-root + .MuiFormControl-root {
+  margin-top: 16px;
+}
+
+.MuiOutlinedInput-notchedOutline legend {
+  display: none;
+}
+
+/*Label*/
+label.MuiInputLabel-root {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: rgba(0, 37, 61, 0.5);
+}
+
+label.MuiInputLabel-root.Mui-focused {
+  top: 14px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  color: rgba(0, 37, 61, 0.5);
+}
+
+label.MuiFormLabel-filled {
+  top: 14px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  color: rgba(0, 37, 61, 0.5);
+}
+
+/*Border-radius*/
+
+fieldset.MuiOutlinedInput-notchedOutline {
+  height: 56px;
+  top: 0px;
+  border-radius: 8px;
+}
+
+.MuiOutlinedInput-root.Mui-focused fieldset.MuiOutlinedInput-notchedOutline {
+  border-color: #d7dade;
+  border-width: 1px;
+}
+
+/*Inputs*/
+
+input.MuiOutlinedInput-input {
+  padding: 26px 16px 8px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1a2a2e;
+}
+
+div:not([id]):not([class]) {
+  display: none;
+}

@@ -1,0 +1,44 @@
+.profile {
+  background-image: url("../static/img/cirlce-top.png"),
+    url("../static/img/circle-bottom.png");
+  background-position: top right, bottom left;
+  background-repeat: no-repeat, no-repeat;
+}
+
+.app-container.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.profile .app-wrapper {
+  position: relative;
+}
+
+.profile__data {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1a2a2e;
+}
+
+.profile__data + .profile__data {
+  margin-top: 16px;
+}
+
+.profile__data span {
+  display: block;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  color: rgba(0, 37, 61, 0.5);
+}
+
+.password {
+  display: block;
+  margin: 32px 0 0 0;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #3c88f8;
+}
