@@ -1,0 +1,31 @@
+.start-test__wrapper {
+  padding: 134px 32px 32px;
+  background-image: url("../static/img/begin.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.start-test__title {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  color: #1a2a2e;
+}
+
+.start-test__subtitle {
+  margin-top: 8px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  text-align: center;
+  color: #1a2a2e;
+}
+
+.start-test__wrapper .app-btn {
+  margin-top: 106px;
+}
+
+.start-test .options-btn {
+  margin-bottom: 14px;
+}

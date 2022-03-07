@@ -22,7 +22,7 @@ const appRoutes = routes.map((i: any, index: number) => (
 
 function App() {
   return (
-    <div>
+    <>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MyResultsContainer />}></Route>
@@ -38,7 +38,7 @@ function App() {
           ></Route>
         </Routes>
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 

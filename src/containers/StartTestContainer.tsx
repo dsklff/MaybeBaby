@@ -2,6 +2,9 @@ import { replace } from "formik";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import info from "../static/svg/info.svg";
+import "./StartTestContainer.css";
+
 const StartTestContainer = () => {
   let navigate = useNavigate();
 
@@ -10,9 +13,20 @@ const StartTestContainer = () => {
   };
 
   return (
-    <div>
-      <h4>New test</h4>
-      <button onClick={() => startTest()}></button>
+    <div className="background-start">
+      <div className="app-container start-test">
+        <button className="options-btn">
+          <img src={info} alt="" />
+        </button>
+        <div className="start-test__wrapper">
+          <h3 className="start-test__title">Начните с онлайн теста ... </h3>
+          <h5 className="start-test__subtitle">Узнайте ...</h5>
+
+          <button className="app-btn" onClick={() => startTest()}>
+            Начать
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

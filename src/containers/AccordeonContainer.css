@@ -1,0 +1,12 @@
+div.MuiButtonBase-root {
+  padding: 0;
+  flex-direction: row;
+}
+
+div.Mui-expanded div.MuiCollapse-root {
+  margin-bottom: 25px;
+}
+
+.accordeon {
+  margin: 0 0 44px;
+}

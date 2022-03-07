@@ -8,6 +8,9 @@ import { NumericLiteral } from "typescript";
 import { useFormik } from "formik";
 import { urlToHttpOptions } from "url";
 
+import ArrowIcon from "../static/svg/Arrow.svg";
+import "./TestContainer.css";
+
 interface Option {
   id: number;
   title: string;
@@ -237,19 +240,27 @@ const TestContainer = () => {
   };
 
   return (
-    <div>
-      <h4>New test</h4>
-      <form onSubmit={formik.handleSubmit}>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          {renderQuestion(currentOrder)}
-          {formik.errors.option_id ? (
-            <div>{formik.errors.option_id}</div>
-          ) : null}
-          {isButtonQuestion === false ? (
-            <button type="submit">Next question</button>
-          ) : null}
-        </LocalizationProvider>
-      </form>
+    <div className="app-container test">
+      <div className="app-wrapper">
+        <button className="arrow-btn">
+          <img src={ArrowIcon} alt="arrow" />
+        </button>
+        <h1 className="app-title">Анкета</h1>
+        <h4 className="test__title">Расскажите нам немного о себе</h4>
+        <form className="test__form" onSubmit={formik.handleSubmit}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            {renderQuestion(currentOrder)}
+            {formik.errors.option_id ? (
+              <div>{formik.errors.option_id}</div>
+            ) : null}
+            {isButtonQuestion === false ? (
+              <button className="app-btn" type="submit">
+                Следующий вопрос
+              </button>
+            ) : null}
+          </LocalizationProvider>
+        </form>
+      </div>
     </div>
   );
 };

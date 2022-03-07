@@ -1,0 +1,51 @@
+.test .app-wrapper {
+  position: relative;
+}
+
+.test__title {
+  margin-bottom: 32px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 30px;
+  color: #1a2a2e;
+}
+
+.test__form div label {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  color: rgba(0, 37, 61, 0.5);
+}
+
+.test__form div {
+  margin-top: 5px;
+  color: red;
+}
+
+.test__form div div {
+  margin-top: 8px;
+}
+
+.test__form div div input {
+  width: 100%;
+  padding: 17px;
+  background-color: #f6f9fc;
+  border: 1px solid #d7dade;
+  border-radius: 8px;
+}
+
+.test__form div label ~ div button {
+  width: 100%;
+  padding: 17px;
+  background-color: #f6f9fc;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.test__form input.MuiOutlinedInput-input {
+  border: none;
+}
+
+.test__form fieldset.MuiOutlinedInput-notchedOutline {
+  top: -5px;
+}

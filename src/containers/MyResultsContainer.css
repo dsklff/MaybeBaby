@@ -1,0 +1,52 @@
+.result {
+  background-image: url("../static/img/circle-left-center.png"),
+    url("../static/img/result-circle-blue.png"),
+    url("../static/img/result-circle-pinkpng.png");
+  background-repeat: no-repeat;
+  background-position: top 216px left, top 144px right, top right 52px;
+}
+
+.result__list {
+  padding-top: 92px;
+}
+
+.result__item {
+  width: 100%;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 16px;
+}
+
+.result__item + .result__item {
+  margin-top: 12px;
+}
+
+.result__title {
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a2a2e;
+}
+
+.result__subtitle {
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #1a2a2e;
+}
+
+.result__btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+}
+
+.result__text {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #3c88f8;
+}
