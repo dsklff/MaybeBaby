@@ -11,6 +11,7 @@ import EditProfile from "./containers/EditProfileContainer";
 import ForgotPasswordContainer from "./containers/ForgotPasswordContainer";
 import StartTestContainer from "./containers/StartTestContainer";
 import TestContainer from "./containers/TestContainer";
+import CustomizedAccordions from "./containers/AccordeonContainer";
 
 const appRoutes = routes.map((i: any, index: number) => (
   <Route
@@ -36,6 +37,7 @@ function App() {
             path="/forgotpassword"
             element={<ForgotPasswordContainer />}
           ></Route>
+          <Route path="/guide" element={<CustomizedAccordions />}></Route>
         </Routes>
       </BrowserRouter>
     </>

@@ -71,6 +71,7 @@ const EditProfileContainer = () => {
               Name
             </label>
             <input
+              className="edit-profile__input"
               id="name"
               defaultValue={undefined}
               name="name"

@@ -4,3 +4,7 @@
   background-position: top right, bottom left;
   background-repeat: no-repeat, no-repeat;
 }
+
+.signup div:not([id]):not([class]) {
+  display: none;
+}

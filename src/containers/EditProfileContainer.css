@@ -57,6 +57,11 @@
   border-radius: 8px;
 }
 
-.edit-profile__item .MuiFormControl-root .MuiInputLabel-root {
-  top: 12px;
+.edit-profile__item select {
+  width: 100%;
+  padding: 17px;
+  background-color: #f6f9fc;
+  border: 1px solid #d7dade;
+  box-sizing: border-box;
+  border-radius: 8px;
 }

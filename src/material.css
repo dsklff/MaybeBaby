@@ -16,7 +16,7 @@ label.MuiInputLabel-root {
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
-  color: rgba(0, 37, 61, 0.5);
+  color: rgba(0, 37, 61, 0.5) !important;
 }
 
 label.MuiInputLabel-root.Mui-focused {
@@ -41,10 +41,11 @@ fieldset.MuiOutlinedInput-notchedOutline {
   height: 56px;
   top: 0px;
   border-radius: 8px;
+  border-color: #d7dade !important;
 }
 
 .MuiOutlinedInput-root.Mui-focused fieldset.MuiOutlinedInput-notchedOutline {
-  border-color: #d7dade;
+  border-color: #d7dade !important;
   border-width: 1px;
 }
 
@@ -57,7 +58,3 @@ input.MuiOutlinedInput-input {
   line-height: 22px;
   color: #1a2a2e;
 }
-
-/* div:not([id]):not([class]) {
-  display: none;
-} */

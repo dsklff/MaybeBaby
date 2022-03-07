@@ -3,6 +3,8 @@ import ForgotPasswordFirstStepForm from "../components/ForgotPasswordFirstStepFo
 import ForgotPasswordSecondStepForm from "../components/ForgotPasswordSecondStepForm";
 import ForgotPasswordThirdStepForm from "../components/ForgotPasswordThirdStepForm";
 
+import ArrowIcon from "../static/svg/Arrow.svg";
+import "./ForgotPasswordContainer.css";
 const ForgotPasswordContainer = () => {
   const [step, setStep] = useState<number>(1);
   const [email, setEmail] = useState<string>("");
@@ -43,7 +45,18 @@ const ForgotPasswordContainer = () => {
     }
   };
 
-  return <div>{renderSwitch(step)}</div>;
+  return (
+    <div className="app-container forgot">
+      <div className="title-wrapper">
+        <button className="arrow-btn">
+          <img src={ArrowIcon} alt="arrow" />
+        </button>
+
+        <h1 className="app-title">Восстановление</h1>
+      </div>
+      {renderSwitch(step)}
+    </div>
+  );
 };
 
 export default ForgotPasswordContainer;

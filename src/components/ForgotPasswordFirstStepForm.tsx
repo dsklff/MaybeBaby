@@ -27,11 +27,14 @@ const ForgotPasswordFirstStepForm = (props: Props) => {
   });
 
   return (
-    <div>
-      <h4>First step</h4>
+    <>
+      <h2 className="app-subtitle">
+        Введите ваш электронный адрес, указанный вами при регистрации
+      </h2>
       <form onSubmit={formik.handleSubmit}>
         <label htmlFor="email">Email</label>
         <input
+          className="form-info"
           id="email"
           name="email"
           type="email"
@@ -39,9 +42,11 @@ const ForgotPasswordFirstStepForm = (props: Props) => {
           value={formik.values.email}
         />
 
-        <button type="submit">Submit</button>
+        <button className="app-btn" type="submit">
+          Submit
+        </button>
       </form>
-    </div>
+    </>
   );
 };
 

@@ -59,8 +59,12 @@ li {
 }
 
 .app-subtitle {
-  text-align: center;
+  text-align: left;
   margin-bottom: 48px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 30px;
+  color: #1a2a2e;
 }
 
 /*Wrappers*/
@@ -188,4 +192,17 @@ span.MuiCheckbox-root {
 
 .background-result {
   background-color: #e9f6ff;
+}
+
+.form-info {
+  width: 100%;
+  padding: 17px;
+  background-color: #f6f9fc;
+  border: 1px solid;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.form-info ~ .form-info {
+  margin-top: 16px;
 }

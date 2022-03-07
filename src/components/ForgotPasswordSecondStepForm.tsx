@@ -32,12 +32,15 @@ const ForgotPasswordSecondStepForm = (props: Props) => {
   });
 
   return (
-    <div>
-      <h4>First step</h4>
-      <button onClick={() => props.prevStep()}>Back</button>
+    <>
+      <h2 className="app-subtitle">
+        Мы отправили на ваш электронный адрес с кодом подтверждения
+      </h2>
+      <button onClick={() => props.prevStep()}></button>
       <form onSubmit={formik.handleSubmit}>
         <label htmlFor="code">Code</label>
         <input
+          className="form-info"
           id="code"
           name="code"
           type="text"
@@ -47,6 +50,7 @@ const ForgotPasswordSecondStepForm = (props: Props) => {
 
         <label htmlFor="password">Password</label>
         <input
+          className="form-info"
           id="password"
           name="password"
           type="password"
@@ -56,6 +60,7 @@ const ForgotPasswordSecondStepForm = (props: Props) => {
 
         <label htmlFor="email">Password confirmation</label>
         <input
+          className="form-info"
           id="passwordConfirm"
           name="passwordConfirm"
           type="passwordConfirm"
@@ -63,9 +68,11 @@ const ForgotPasswordSecondStepForm = (props: Props) => {
           value={formik.values.passwordConfirm}
         />
 
-        <button type="submit">Submit</button>
+        <button className="app-btn" type="submit">
+          Submit
+        </button>
       </form>
-    </div>
+    </>
   );
 };
 

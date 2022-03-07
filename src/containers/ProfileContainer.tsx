@@ -24,7 +24,10 @@ const ProfileContainer = () => {
   return (
     <div className="app-container profile">
       <div className="app-wrapper">
-        <button className="arrow-btn">
+        <button
+          className="arrow-btn"
+          onClick={() => navigate("/starttest", { replace: true })}
+        >
           <img src={ArrowIcon} alt="arrow" />
         </button>
         <h1 className="app-title">Личные данные</h1>
