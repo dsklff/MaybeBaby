@@ -5,7 +5,8 @@ import RegisterFirstStepForm from "../components/RegisterFirstStepForm";
 import RegisterSecondStepForm from "../components/RegisterSecondStepForm";
 import authService from "../services/authService";
 
-import "./RegisterContainer.css";
+import "../styles/RegisterContainer.css";
+import "../styles/common-styles.css";
 
 const RegisterContainer = () => {
   const [step, setStep] = useState<number>(1);
@@ -35,7 +36,7 @@ const RegisterContainer = () => {
       <h2 className="app-subtitle">Добро пожаловать...</h2>
       {renderSwitch(step)}
       <p className="account">Уже есть аккаунт?</p>
-      <button className="sign-up">
+      <button className="action-btn action-btn--center">
         <Link to="/login">Войти</Link>
       </button>
     </div>

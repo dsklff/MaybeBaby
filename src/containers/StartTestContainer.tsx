@@ -3,7 +3,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import info from "../static/svg/info.svg";
-import "./StartTestContainer.css";
+import "../styles/StartTestContainer.css";
+import "../styles/common-styles.css";
 
 const StartTestContainer = () => {
   let navigate = useNavigate();

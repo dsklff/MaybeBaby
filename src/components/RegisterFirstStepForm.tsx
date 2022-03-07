@@ -6,6 +6,7 @@ import authService from "../services/authService";
 import TextField from "@mui/material/TextField";
 
 import Checkbox from "@mui/material/Checkbox";
+import "../styles/common-styles.css";
 import "../material.css";
 
 interface Props {

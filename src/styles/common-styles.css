@@ -1,0 +1,85 @@
+.app-container {
+  max-width: 375px;
+  margin: 0 auto;
+  padding: 44px 16px;
+  height: 100vh;
+}
+
+.app-title {
+  margin-bottom: 37px;
+  font-weight: bold;
+  text-align: center;
+  color: #1a2a2e;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.app-subtitle {
+  text-align: left;
+  margin-bottom: 48px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 30px;
+  color: #1a2a2e;
+}
+
+/*Inputs*/
+.app-input {
+  padding: 17px 16px;
+  width: 100%;
+  background-color: #f6f6f9;
+  border: 1px solid #d7dade;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+/*Wrappers*/
+
+.app-wrapper {
+  position: relative;
+}
+
+/*List*/
+
+.app-list__item {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1a2a2e;
+}
+
+.app-list__item + .app-list__item {
+  margin-top: 16px;
+}
+
+.app-list__item span {
+  display: block;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  color: rgba(0, 37, 61, 0.5);
+}
+
+/*Buttons*/
+
+.back-btn {
+  position: absolute;
+  top: 0px;
+  transform: rotate(180deg);
+  left: 0;
+}
+
+.action-btn {
+  display: block;
+  margin: 32px 0 0 0;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #3c88f8;
+}
+
+.action-btn--center {
+  margin: 32px auto;
+}

@@ -5,7 +5,8 @@ import authService from "../services/authService";
 
 import ArrowIcon from "../static/svg/Arrow.svg";
 
-import "./ProfileContainer.css";
+import "../styles/common-styles.css";
+import "../styles/ProfileContainer.css";
 
 const ProfileContainer = () => {
   const [profile, setProfile] = useState<any>(undefined);
@@ -31,35 +32,35 @@ const ProfileContainer = () => {
           <img src={ArrowIcon} alt="arrow" />
         </button>
         <h1 className="app-title">Личные данные</h1>
-        <ul>
-          <li className="profile__data">
+        <ul className="app-list">
+          <li className="app-list__item">
             <span>Email: </span>
             {profile && profile.email}
           </li>
-          <li className="profile__data">
+          <li className="app-list__item">
             <span>Name: </span>
             {profile && profile.name}
           </li>
-          <li className="profile__data">
+          <li className="app-list__item">
             <span>Gender: </span>
             {profile && profile.gender}
           </li>
-          <li className="profile__data">
+          <li className="app-list__item">
             <span>Nationality: </span>
             {profile && profile.nationality}
           </li>
-          <li className="profile__data">
+          <li className="app-list__item">
             <span>Date of birthday: </span>
             {profile && profile.dob}
           </li>
         </ul>
-        <button className="password">Сменить пароль</button>
+        <button className="action-btn">Сменить пароль</button>
       </div>
       <button
         className="app-btn"
         onClick={() => navigate("/editprofile", { replace: true })}
       >
-        Edit profile
+        Изменить профиль
       </button>
     </div>
   );

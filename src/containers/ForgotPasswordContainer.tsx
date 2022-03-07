@@ -4,7 +4,9 @@ import ForgotPasswordSecondStepForm from "../components/ForgotPasswordSecondStep
 import ForgotPasswordThirdStepForm from "../components/ForgotPasswordThirdStepForm";
 
 import ArrowIcon from "../static/svg/Arrow.svg";
-import "./ForgotPasswordContainer.css";
+import "../styles/common-styles.css";
+import "../styles/ForgotPasswordContainer.css";
+
 const ForgotPasswordContainer = () => {
   const [step, setStep] = useState<number>(1);
   const [email, setEmail] = useState<string>("");

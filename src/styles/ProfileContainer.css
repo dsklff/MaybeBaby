@@ -1,10 +1,16 @@
-.signup {
+.profile {
   background-image: url("../static/img/cirlce-top.png"),
     url("../static/img/circle-bottom.png");
   background-position: top right, bottom left;
   background-repeat: no-repeat, no-repeat;
 }
 
-.signup div:not([id]):not([class]) {
-  display: none;
+.app-container.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.profile .app-wrapper {
+  position: relative;
 }

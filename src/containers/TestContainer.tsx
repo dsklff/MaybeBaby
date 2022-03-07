@@ -9,7 +9,8 @@ import { useFormik } from "formik";
 import { urlToHttpOptions } from "url";
 
 import ArrowIcon from "../static/svg/Arrow.svg";
-import "./TestContainer.css";
+import "../styles/TestContainer.css";
+import "../styles/common-styles.css";
 
 interface Option {
   id: number;

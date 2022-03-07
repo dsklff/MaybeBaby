@@ -4,7 +4,8 @@ import RequireAuth from "../components/RequireAuth";
 import authService from "../services/authService";
 
 import arrowBlue from "../static/img/arrow-blue.png";
-import "./MyResultsContainer.css";
+import "../styles/MyResultsContainer.css";
+import "../styles/common-styles.css";
 
 const MyResultsContainer = () => {
   let navigate = useNavigate();

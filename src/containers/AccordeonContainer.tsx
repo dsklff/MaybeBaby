@@ -9,7 +9,8 @@ import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 
 import ArrowIcon from "../static/svg/Arrow.svg";
-import "./AccordeonContainer.css";
+import "../styles/common-styles.css";
+import "../styles/AccordeonContainer.css";
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />

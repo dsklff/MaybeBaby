@@ -2,6 +2,8 @@ import { useFormik } from "formik";
 import React from "react";
 import authService from "../services/authService";
 
+import "../styles/common-styles.css";
+
 interface Props {
   nextStep: () => void;
   setEmail: (email: string) => void;
@@ -34,7 +36,7 @@ const ForgotPasswordFirstStepForm = (props: Props) => {
       <form onSubmit={formik.handleSubmit}>
         <label htmlFor="email">Email</label>
         <input
-          className="form-info"
+          className="app-input"
           id="email"
           name="email"
           type="email"
@@ -43,7 +45,7 @@ const ForgotPasswordFirstStepForm = (props: Props) => {
         />
 
         <button className="app-btn" type="submit">
-          Submit
+          Подтвердить
         </button>
       </form>
     </>

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import authService from "../services/authService";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
-import "./RegisterSecondStep.css";
+import "../styles/common-styles.css";
 import "../material.css";
 
 const RegisterSecondStepForm = () => {
@@ -40,13 +40,13 @@ const RegisterSecondStepForm = () => {
   return (
     <div>
       <form className="edit-profile__form" onSubmit={formik.handleSubmit}>
-        <ul className="app-wrapper edit-profile__list">
-          <li className="edit-profile__item">
+        <ul className="app-wrapper app-list">
+          <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="name">
               Name
             </label>
             <input
-              className="edit-profile__input"
+              className="app-input"
               id="name"
               defaultValue={undefined}
               name="name"
@@ -55,11 +55,12 @@ const RegisterSecondStepForm = () => {
               value={formik.values.name}
             />
           </li>
-          <li className="edit-profile__item">
+          <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="nationality">
               Nationality
             </label>
             <select
+              className="app-input"
               id="nationality"
               defaultValue={undefined}
               name="nationality"
@@ -72,11 +73,12 @@ const RegisterSecondStepForm = () => {
               <option value="Russian" label="Russian"></option>
             </select>
           </li>
-          <li className="edit-profile__item">
+          <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="gender">
               Sex
             </label>
             <select
+              className="app-input"
               id="gender"
               defaultValue={undefined}
               name="gender"
@@ -90,7 +92,7 @@ const RegisterSecondStepForm = () => {
             </select>
           </li>
 
-          <li className="edit-profile__item">
+          <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="dob">
               Date of birthday
             </label>

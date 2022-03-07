@@ -42,31 +42,6 @@ li {
   margin: 0;
 }
 
-.app-container {
-  max-width: 375px;
-  margin: 0 auto;
-  padding: 44px 16px;
-  height: 100vh;
-}
-
-.app-title {
-  margin-bottom: 37px;
-  font-weight: bold;
-  text-align: center;
-  color: #1a2a2e;
-  font-size: 16px;
-  line-height: 22px;
-}
-
-.app-subtitle {
-  text-align: left;
-  margin-bottom: 48px;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 30px;
-  color: #1a2a2e;
-}
-
 /*Wrappers*/
 
 .app-wrapper {
@@ -192,17 +167,4 @@ span.MuiCheckbox-root {
 
 .background-result {
   background-color: #e9f6ff;
-}
-
-.form-info {
-  width: 100%;
-  padding: 17px;
-  background-color: #f6f9fc;
-  border: 1px solid;
-  border-radius: 8px;
-  text-align: left;
-}
-
-.form-info ~ .form-info {
-  margin-top: 16px;
 }
