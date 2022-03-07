@@ -83,3 +83,20 @@
 .action-btn--center {
   margin: 32px auto;
 }
+
+.app-navigation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 82px;
+  background-color: #fff;
+}
+
+span.MuiBottomNavigationAction-label.Mui-selected {
+  margin-top: 5px;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  color: #6767ab;
+}

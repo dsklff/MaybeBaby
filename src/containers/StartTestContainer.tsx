@@ -1,6 +1,7 @@
 import { replace } from "formik";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import LabelBottomNavigation from "./ButtonNavigate";
 
 import info from "../static/svg/info.svg";
 import "../styles/StartTestContainer.css";
@@ -27,6 +28,7 @@ const StartTestContainer = () => {
             Начать
           </button>
         </div>
+        <LabelBottomNavigation></LabelBottomNavigation>
       </div>
     </div>
   );
