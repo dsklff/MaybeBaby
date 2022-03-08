@@ -38,7 +38,7 @@ const RegisterSecondStepForm = () => {
   });
 
   return (
-    <div>
+    <div className="register-second">
       <form className="edit-profile__form" onSubmit={formik.handleSubmit}>
         <ul className="app-wrapper app-list">
           <li className="app-list__item">

@@ -6,7 +6,6 @@
 }
 
 body {
-  min-height: 100vh;
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   margin: 0;
@@ -134,6 +133,10 @@ span.MuiCheckbox-root {
 .account {
   margin-top: 32px;
   text-align: center;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #1a2a2e;
 }
 
 .sign-up {
@@ -167,4 +170,8 @@ span.MuiCheckbox-root {
 
 .background-result {
   background-color: #e9f6ff;
+}
+
+.background-onboarding {
+  background: linear-gradient(180deg, #dfe1fa 0%, #d4d4f5 81.25%, #f9f8f6 100%);
 }

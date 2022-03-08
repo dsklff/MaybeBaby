@@ -67,7 +67,7 @@ const RegisterFirstStepForm = (props: Props) => {
   });
 
   return (
-    <>
+    <div className="register-first">
       <form onSubmit={formik.handleSubmit}>
         <TextField
           id="email"
@@ -122,7 +122,7 @@ const RegisterFirstStepForm = (props: Props) => {
           Подтвердить
         </button>
       </form>
-    </>
+    </div>
   );
 };
 

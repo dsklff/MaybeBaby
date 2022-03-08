@@ -1,0 +1,81 @@
+.app-slider {
+  margin: 37px 0;
+}
+
+.onboarding__buttons {
+  display: flex;
+}
+
+.onboarding__btn {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 140%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #1a2a2e;
+  opacity: 0.65;
+}
+
+.onboarding__btn + .onboarding__btn {
+  margin-left: 16px;
+}
+
+.onboarding__btn--active {
+  opacity: 1;
+}
+
+.onboarding__btn--pass {
+  margin-left: auto !important;
+  opacity: 1;
+}
+
+.onboarding__img {
+  border-radius: 24px;
+  width: 283px;
+  height: 320px;
+}
+
+.onboarding__title {
+  margin-top: 32px;
+  font-weight: bold;
+  font-size: 19px;
+  line-height: 27px;
+  text-align: center;
+  color: #1a2a2e;
+}
+
+.swiper-slide {
+  padding-bottom: 50px;
+  width: 300px;
+  min-height: 530px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transition: all 0.5s;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.swiper-slide.swiper-slide-prev .onboarding__title,
+.swiper-slide.swiper-slide-next .onboarding__title {
+  opacity: 0;
+}
+
+.onboarding__title {
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+.onboarding__forward {
+  margin: 0 auto;
+  display: block;
+}

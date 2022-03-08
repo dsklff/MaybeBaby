@@ -12,6 +12,7 @@ import ForgotPasswordContainer from "./containers/ForgotPasswordContainer";
 import StartTestContainer from "./containers/StartTestContainer";
 import TestContainer from "./containers/TestContainer";
 import CustomizedAccordions from "./containers/AccordeonContainer";
+import Onboarding from "./containers/Onboard";
 
 const appRoutes = routes.map((i: any, index: number) => (
   <Route
@@ -38,6 +39,7 @@ function App() {
             element={<ForgotPasswordContainer />}
           ></Route>
           <Route path="/guide" element={<CustomizedAccordions />}></Route>
+          <Route path="/onboarding" element={<Onboarding />}></Route>
         </Routes>
       </BrowserRouter>
     </>

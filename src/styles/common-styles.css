@@ -2,7 +2,7 @@
   max-width: 375px;
   margin: 0 auto;
   padding: 44px 16px;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .app-title {
