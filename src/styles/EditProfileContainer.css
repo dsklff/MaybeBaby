@@ -18,6 +18,7 @@
 }
 
 .edit-profile__label {
+  margin-bottom: 5px;
   display: block;
   font-weight: 500;
   font-size: 13px;

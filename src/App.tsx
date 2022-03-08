@@ -14,6 +14,8 @@ import TestContainer from "./containers/TestContainer";
 import CustomizedAccordions from "./containers/AccordeonContainer";
 import Onboarding from "./containers/Onboard";
 
+import ResultContainer from "./containers/ResultContainer";
+
 const appRoutes = routes.map((i: any, index: number) => (
   <Route
     path={i.path}
@@ -27,7 +29,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<MyResultsContainer />}></Route>
+          <Route path="/myresults" element={<MyResultsContainer />}></Route>
           <Route path="/login" element={<LoginContainer />}></Route>
           <Route path="/signup" element={<RegisterContainer />}></Route>
           <Route path="/profile" element={<ProfileContainer />}></Route>
@@ -40,6 +42,7 @@ function App() {
           ></Route>
           <Route path="/guide" element={<CustomizedAccordions />}></Route>
           <Route path="/onboarding" element={<Onboarding />}></Route>
+          <Route path="/result" element={<ResultContainer />}></Route>
         </Routes>
       </BrowserRouter>
     </>

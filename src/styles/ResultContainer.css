@@ -1,0 +1,125 @@
+.my-result .app-container {
+  padding-bottom: 0;
+}
+
+.my-result {
+  background-image: url("../static/img/result-circle-blue.png"),
+    url("../static/img/circle-left-center.png"),
+    url("../static/img/result-circle-pinkpng.png");
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: top 144px right, top left, top right 52px;
+}
+
+.my-result__header {
+  position: relative;
+  margin-bottom: 48px;
+  height: 48px;
+  font-weight: bold;
+  text-align: center;
+  color: #1a2a2e;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.close-btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.my-result__subtitle {
+  margin-bottom: 6px;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a2a2e;
+}
+
+.my-result__date {
+  margin-bottom: 24px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(0, 37, 61, 0.5);
+}
+
+.my-result__items {
+  padding: 0 10px;
+}
+
+.my-result__item {
+  padding: 32px 0;
+  border-bottom: 1px solid #d7dade;
+}
+
+.my-result__item:last-child {
+  border-bottom: none;
+  padding: 32px 0 40px;
+}
+
+.my-result__title {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(0, 37, 61, 0.5);
+}
+
+.my-result__subtitle {
+  margin-bottom: 12px;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a2a2e;
+}
+
+.my-result__text {
+  font-size: 14px;
+  line-height: 20px;
+  color: #1a2a2e;
+}
+
+.my-result__recomendation {
+  position: relative;
+  margin-bottom: 48px;
+  padding: 24px 24px 28px;
+  border: 2px solid #3c88f8;
+  border-radius: 12px;
+}
+
+.recomendation__icon {
+  position: absolute;
+  top: -1px;
+  right: -2px;
+}
+
+.recomandation__title {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #d7dade;
+}
+
+.recomendation__subtitle {
+  padding: 24px 0 16px;
+}
+
+.recomendation__item {
+  display: flex;
+}
+
+.my-result__btn {
+  padding: 15px 0;
+  width: 100%;
+  background: #c1e7ff;
+  border-radius: 12px;
+
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 20px;
+  text-align: center;
+  color: #1a2a2e;
+}
+
+.my-result__back {
+  background-color: #fff;
+  padding-bottom: 40px;
+}

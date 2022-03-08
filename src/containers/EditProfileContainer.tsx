@@ -64,7 +64,7 @@ const EditProfileContainer = () => {
 
   return (
     <div className="app-container edit-profile">
-      <h1 className="app-title">Edit profile</h1>
+      <h1 className="app-title">Изменить профиль</h1>
       <form className="edit-profile__form" onSubmit={formik.handleSubmit}>
         <ul className="app-wrapper app-list">
           <li className="app-list__item">
