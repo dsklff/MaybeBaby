@@ -43,9 +43,6 @@ li {
 
 /*Wrappers*/
 
-.app-wrapper {
-}
-
 .title-wrapper {
   position: relative;
 }
@@ -174,4 +171,31 @@ span.MuiCheckbox-root {
 
 .background-onboarding {
   background: linear-gradient(180deg, #dfe1fa 0%, #d4d4f5 81.25%, #f9f8f6 100%);
+}
+
+/*Progress*/
+
+span.MuiLinearProgress-root {
+  background-color: rgba(30, 47, 55, 0.1);
+  border-radius: 8px;
+  height: 8px;
+}
+
+span.MuiLinearProgress-bar {
+  background: #6767ab;
+  border-radius: 8px;
+}
+.progress-bar {
+  margin-bottom: 8px;
+}
+
+.progress-bar__number {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+  color: #1a2a2e;
+}
+
+.progress-bar__number--opacity {
+  opacity: 0.5;
 }

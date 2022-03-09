@@ -18,7 +18,7 @@ const StartTestContainer = () => {
     <div className="background-start">
       <div className="app-container start-test">
         <button className="options-btn">
-          <img src={info} alt="" />
+          <img src={info} alt="info" />
         </button>
         <div className="start-test__wrapper">
           <h3 className="start-test__title">Начните с онлайн теста ... </h3>

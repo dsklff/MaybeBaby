@@ -1,0 +1,31 @@
+.main-profile {
+  background-image: url("../static/img/hand.png");
+  background-position: top 67px center;
+  background-repeat: no-repeat;
+}
+
+.main-profile__list {
+  display: flex;
+  flex-direction: column;
+  padding: 180px 0 0;
+}
+
+.main-profile__btn {
+  display: flex;
+  align-items: center;
+  padding: 22px 19px;
+  background-color: #fff;
+  border-radius: 16px;
+}
+
+.main-profile__btn + .main-profile__btn {
+  margin-top: 12px;
+}
+
+.main-profile__text {
+  margin-left: 14px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  color: #1a2a2e;
+}

@@ -7,6 +7,7 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { NumericLiteral } from "typescript";
 import { useFormik } from "formik";
 import { urlToHttpOptions } from "url";
+import LinearDeterminate from "../components/Progress";
 
 import ArrowIcon from "../static/svg/Arrow.svg";
 import "../styles/TestContainer.css";
@@ -247,7 +248,9 @@ const TestContainer = () => {
           <img src={ArrowIcon} alt="arrow" />
         </button>
         <h1 className="app-title">Анкета</h1>
+        <LinearDeterminate />
         <h4 className="test__title">Расскажите нам немного о себе</h4>
+
         <form className="test__form" onSubmit={formik.handleSubmit}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             {renderQuestion(currentOrder)}

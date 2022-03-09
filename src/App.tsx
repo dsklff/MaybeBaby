@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import routes from "./common/routes";
@@ -13,8 +12,10 @@ import StartTestContainer from "./containers/StartTestContainer";
 import TestContainer from "./containers/TestContainer";
 import CustomizedAccordions from "./containers/AccordeonContainer";
 import Onboarding from "./containers/Onboard";
+import MainProfile from "./containers/MainProfile";
 
 import ResultContainer from "./containers/ResultContainer";
+import CircularProgressWithLabel from "./components/PercentProgress";
 
 const appRoutes = routes.map((i: any, index: number) => (
   <Route
@@ -29,7 +30,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/myresults" element={<MyResultsContainer />}></Route>
+          <Route path="/" element={<MyResultsContainer />}></Route>
           <Route path="/login" element={<LoginContainer />}></Route>
           <Route path="/signup" element={<RegisterContainer />}></Route>
           <Route path="/profile" element={<ProfileContainer />}></Route>
@@ -43,6 +44,14 @@ function App() {
           <Route path="/guide" element={<CustomizedAccordions />}></Route>
           <Route path="/onboarding" element={<Onboarding />}></Route>
           <Route path="/result" element={<ResultContainer />}></Route>
+          <Route
+            path="/progress"
+            element={<CircularProgressWithLabel></CircularProgressWithLabel>}
+          ></Route>
+          <Route
+            path="/mainprofile"
+            element={<MainProfile></MainProfile>}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </>

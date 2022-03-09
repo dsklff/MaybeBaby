@@ -1,0 +1,29 @@
+.preogress {
+}
+
+.progress__title {
+  margin-bottom: 72px;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+  /* identical to box height, or 133% */
+
+  text-align: center;
+
+  /* Primary */
+
+  color: #1a2a2e;
+}
+
+.progress__subtitle {
+  margin-bottom: 24px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  color: #1a2a2e;
+}
+
+svg circle.MuiCircularProgress-cirlce {
+  font-size: 15px;
+}
