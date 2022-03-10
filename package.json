@@ -1,5 +1,6 @@
 {
   "name": "survey-app",
+  "homepage": "https://dsklff.github.io/MaybeBaby/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
