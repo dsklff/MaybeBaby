@@ -11,7 +11,6 @@ const RequireAuth = (Component: any): any => {
       (async () => {
         const result = await authService.checkAuth();
         if (!result) {
-          console.log("asdasdasd");
           navigate("/login", { replace: true });
         }
       })();
