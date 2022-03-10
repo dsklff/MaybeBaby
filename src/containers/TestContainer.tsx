@@ -12,6 +12,8 @@ import LinearDeterminate from "../components/Progress";
 import ArrowIcon from "../static/svg/Arrow.svg";
 import "../styles/TestContainer.css";
 import "../styles/common-styles.css";
+import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
 interface Option {
   id: number;
@@ -50,6 +52,7 @@ const TestContainer = () => {
   const [questions, setQuestions] = useState<Question[]>();
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [isButtonQuestion, setIsButtonQuestion] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const validate = (values: any) => {
     const errors: any = {};
@@ -61,21 +64,51 @@ const TestContainer = () => {
     return errors;
   };
 
-  const nextQuestion = async (question: number) => {
-    if (
-      questions &&
-      questions[questions.length - 1].order <= currentOrder + question
-    ) {
-      addAnswerValue(formik.values.option_id!, formik.values.value);
-      await Promise.resolve();
+  const checkDataForValid = (value: string) => {
+    let result: any;
+    if (moment(value, "YYYY-MM-DD", true).isValid()) {
+      result = moment(value).format("YYYY-MM-DD");
+    } else {
+      result = value;
+    }
 
+    return result;
+  };
+
+  const nextQuestion = async () => {
+    const value = checkDataForValid(formik.values.value);
+    const availableQuestions = questions?.filter((x) => x.order > currentOrder);
+
+    const updatedAnswers = [
+      ...answers,
+      { option_id: formik.values.option_id, value: formik.values.value },
+    ];
+
+    if (availableQuestions && availableQuestions?.length > 0) {
+      let i: number = 1;
+      for (let question of availableQuestions!) {
+        if (
+          question?.option_id !== null &&
+          !updatedAnswers.some((a) => a.option_id === question?.option_id)
+        ) {
+        } else {
+          setCurrentOrder(currentOrder + i);
+          break;
+        }
+
+        i++;
+      }
+    } else {
       try {
+        addAnswerValue(formik.values.option_id!, value);
+        await Promise.resolve();
         const result = await mainService.endTest(answers);
+        console.log(result?.data.results);
+        navigate("/result", { replace: true, state: result?.data.results });
       } catch (e) {
         alert(e);
       }
     }
-    setCurrentOrder(currentOrder + question);
   };
 
   const addAnswerValue = (option_id: number, value: any) => {
@@ -107,44 +140,9 @@ const TestContainer = () => {
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: async (values, { resetForm }) => {
-      const question = questions?.find((q) => q.order === currentOrder + 1);
-      const updatedAnswers = [
-        ...answers,
-        { option_id: values.option_id, value: values.value },
-      ];
-      addAnswerValue(values.option_id!, values.value);
-
-      if (
-        question?.option_id !== null &&
-        !updatedAnswers.some((a) => a.option_id === question?.option_id)
-      ) {
-        nextQuestion(2);
-      } else {
-        nextQuestion(1);
-      }
-
-      console.log(answers);
-
-      if (
-        question?.option_id !== null &&
-        question?.option_id !== values.option_id
-      ) {
-        nextQuestion(2);
-      } else {
-        nextQuestion(1);
-      }
-
-      if (questions && questions[questions.length - 1].order <= currentOrder) {
-        addAnswerValue(values.option_id!, values.value);
-        await Promise.resolve();
-
-        try {
-          const result = await mainService.endTest(answers);
-        } catch (e) {
-          alert(e);
-        }
-      }
-
+      const value = checkDataForValid(formik.values.value);
+      addAnswerValue(values.option_id!, value);
+      nextQuestion();
       resetForm();
     },
   });
@@ -182,7 +180,6 @@ const TestContainer = () => {
       );
     setQuestions(sortedResult);
     checkIsButtonQuestion(sortedResult);
-    console.log(sortedResult);
   };
 
   const elementForOption = (option: Option) => {
@@ -245,7 +242,11 @@ const TestContainer = () => {
     <div className="app-container test">
       <div className="app-wrapper">
         <button className="arrow-btn">
-          <img src={ArrowIcon} alt="arrow" />
+          <img
+            src={ArrowIcon}
+            alt="arrow"
+            onClick={() => navigate("/", { replace: true })}
+          />
         </button>
         <h1 className="app-title">Анкета</h1>
         <LinearDeterminate />

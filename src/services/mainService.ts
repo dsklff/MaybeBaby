@@ -35,8 +35,45 @@ const endTest = async (answers: any) => {
 return response; 
 }
 
+const getTestResults = async () => {
+    const token = localStorage.getItem('token');
+
+    if(!token) {
+        return;
+    }
+    
+    const response = await axios
+        .get(API_URL + 'survey/results', {
+            headers: {
+                'Authorization': `Bearer ${JSON.parse(token)}`
+            }
+        })
+
+    return response;
+}
+
+
+const getTestResultsByQuery = async (date: string) => {
+    const token = localStorage.getItem('token');
+
+    if(!token) {
+        return;
+    }
+    
+    const response = await axios
+        .get(API_URL + `survey/results?date=${date}`, {
+            headers: {
+                'Authorization': `Bearer ${JSON.parse(token)}`
+            }
+        })
+
+    return response;
+}
+
 const mainService = {
     startTest,
-    endTest
+    endTest,
+    getTestResults,
+    getTestResultsByQuery
 }
 export default mainService;

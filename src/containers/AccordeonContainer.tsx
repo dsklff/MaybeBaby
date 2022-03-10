@@ -64,10 +64,7 @@ export default function CustomizedAccordions() {
         </button>
         <h1 className="app-title">Справочник</h1>
       </div>
-      <Accordion
-        expanded={expanded === "panel1"}
-        onChange={handleChange("panel1")}
-      >
+      <Accordion onChange={handleChange("panel1")}>
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
           <Typography>Что такое репродуктивный возраст?</Typography>
         </AccordionSummary>

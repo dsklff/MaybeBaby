@@ -1,9 +1,17 @@
 import * as React from "react";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-export default function LabelBottomNavigation() {
+const LabelBottomNavigation = () => {
   const [value, setValue] = React.useState("recents");
+  let navigate = useNavigate();
+  let location = useLocation();
+
+  useEffect(() => {
+    console.log(location.pathname);
+  }, []);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -78,29 +86,41 @@ export default function LabelBottomNavigation() {
   };
 
   return (
-    <div className="app-navigation">
-      <BottomNavigation value={value} onChange={handleChange}>
-        <BottomNavigationAction
-          label="Новый тест"
-          value="newtest"
-          icon={<TestIcon />}
-        />
-        <BottomNavigationAction
-          label="Policy"
-          value="Policy"
-          icon={<Policy />}
-        />
-        <BottomNavigationAction
-          label="Мои тесты"
-          value="mytest"
-          icon={<MyTests />}
-        />
-        <BottomNavigationAction
-          label="Профиль"
-          value="profile"
-          icon={<UserIcon />}
-        />
-      </BottomNavigation>
+    <div>
+      {location.pathname !== "/login" &&
+      location.pathname !== "/signup" &&
+      location.pathname !== "/forgotpassword" ? (
+        <div className="app-navigation">
+          <BottomNavigation value={value} onChange={handleChange}>
+            <BottomNavigationAction
+              label="Новый тест"
+              value="newtest"
+              icon={<TestIcon />}
+              onClick={() => navigate("/", { replace: true })}
+            />
+            <BottomNavigationAction
+              label="Guide"
+              value="Guide"
+              icon={<Policy />}
+              onClick={() => navigate("/guide", { replace: true })}
+            />
+            <BottomNavigationAction
+              label="Мои тесты"
+              value="mytest"
+              icon={<MyTests />}
+              onClick={() => navigate("/myresults", { replace: true })}
+            />
+            <BottomNavigationAction
+              label="Профиль"
+              value="profile"
+              icon={<UserIcon />}
+              onClick={() => navigate("/profile", { replace: true })}
+            />
+          </BottomNavigation>
+        </div>
+      ) : null}
     </div>
   );
-}
+};
+
+export default LabelBottomNavigation;

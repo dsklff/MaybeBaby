@@ -55,6 +55,12 @@ const ProfileContainer = () => {
           </li>
         </ul>
         <button className="action-btn">Сменить пароль</button>
+        <button
+          className="action-btn"
+          onClick={() => navigate("/login", { replace: true })}
+        >
+          Выйти
+        </button>
       </div>
       <button
         className="app-btn"

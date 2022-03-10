@@ -19,16 +19,23 @@ interface FullResult {
   userData: any;
 }
 
-const ResultContainer = () => {
+interface stateType {
+  date: any;
+}
+
+const MyResultsDetailContainer = () => {
   const [results, setResults] = useState<FullResult>();
   let navigate = useNavigate();
+  const location = useLocation();
+  const state = location.state as stateType;
+  const { date } = state;
 
   useEffect(() => {
     loadResults();
   }, []);
 
   const loadResults = async () => {
-    const results = await mainService.getTestResults();
+    const results = await mainService.getTestResultsByQuery(date.toString());
 
     const result =
       results &&
@@ -109,4 +116,4 @@ const ResultContainer = () => {
   );
 };
 
-export default ResultContainer;
+export default MyResultsDetailContainer;
