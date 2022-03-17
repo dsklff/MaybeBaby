@@ -6,6 +6,10 @@
   background-position: top 216px left, top 144px right, top right 52px;
 }
 
+.app-container.result {
+  padding-bottom: 83px;
+}
+
 .result__list {
   padding-top: 92px;
 }

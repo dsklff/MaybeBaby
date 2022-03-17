@@ -1,7 +1,3 @@
-.my-result .app-container {
-  padding-bottom: 0;
-}
-
 .my-result {
   background-image: url("../static/img/result-circle-blue.png"),
     url("../static/img/circle-left-center.png"),

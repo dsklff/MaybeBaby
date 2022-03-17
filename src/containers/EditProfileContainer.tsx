@@ -120,6 +120,59 @@ const EditProfileContainer = () => {
           </li>
 
           <li className="app-list__item">
+            <label className="edit-profile__label" htmlFor="job">
+              Введите профессию
+            </label>
+            <input
+              className="app-input"
+              id="job"
+              defaultValue={undefined}
+              name="job"
+              placeholder="Type job"
+              onChange={formik.handleChange}
+              value={formik.values.name}
+            />
+          </li>
+
+          <li className="app-list__item">
+            <label className="edit-profile__label" htmlFor="city">
+              Выберите город
+            </label>
+            <select
+              className="app-input"
+              id="city"
+              defaultValue={undefined}
+              name="city"
+              placeholder="Select nationality.."
+              onChange={formik.handleChange}
+              value={formik.values.nationality}
+            >
+              <option value="-1" label="Select.."></option>
+              <option value="Kazakh" label="Kazakh"></option>
+              <option value="Russian" label="Russian"></option>
+            </select>
+          </li>
+
+          <li className="app-list__item">
+            <label className="edit-profile__label" htmlFor="family-status">
+              Семейное положение
+            </label>
+            <select
+              className="app-input"
+              id="family-status"
+              defaultValue={undefined}
+              name="family-status"
+              placeholder="Select family status"
+              onChange={formik.handleChange}
+              value={formik.values.gender}
+            >
+              <option value={-1} label="Select.."></option>
+              <option value={0} label="Female"></option>
+              <option value={1} label="Male"></option>
+            </select>
+          </li>
+
+          <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="dob">
               Date of birthday
             </label>

@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../services/authService";
 
+import "../styles/ChangePassword.css";
 import "../styles/common-styles.css";
 
 const validate = (values: any) => {
@@ -65,7 +66,7 @@ const ChangePasswordContainer = () => {
   });
 
   return (
-    <>
+    <div className="app-container changepass">
       <h2 className="app-subtitle">Сменить пароль</h2>
       <button onClick={() => navigate("/profile", { replace: true })}></button>
       <form onSubmit={formik.handleSubmit}>
@@ -118,7 +119,7 @@ const ChangePasswordContainer = () => {
           Сменить пароль
         </button>
       </form>
-    </>
+    </div>
   );
 };
 
