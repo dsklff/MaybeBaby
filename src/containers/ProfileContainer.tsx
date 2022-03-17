@@ -38,23 +38,28 @@ const ProfileContainer = () => {
             {profile && profile.email}
           </li>
           <li className="app-list__item">
-            <span>Name: </span>
+            <span>Имя: </span>
             {profile && profile.name}
           </li>
           <li className="app-list__item">
-            <span>Gender: </span>
+            <span>Пол: </span>
             {profile && profile.gender}
           </li>
           <li className="app-list__item">
-            <span>Nationality: </span>
+            <span>Национальность: </span>
             {profile && profile.nationality}
           </li>
           <li className="app-list__item">
-            <span>Date of birthday: </span>
+            <span>Дата рождения: </span>
             {profile && profile.dob}
           </li>
         </ul>
-        <button className="action-btn">Сменить пароль</button>
+        <button
+          className="action-btn"
+          onClick={() => navigate("/changepassword", { replace: true })}
+        >
+          Сменить пароль
+        </button>
         <button
           className="action-btn"
           onClick={() => navigate("/login", { replace: true })}

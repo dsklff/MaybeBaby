@@ -18,6 +18,9 @@ import MyResultDetailsContainer from "./containers/MyResultsDetailContainer";
 import ResultContainer from "./containers/ResultContainer";
 import CircularProgressWithLabel from "./components/PercentProgress";
 import LabelBottomNavigation from "./containers/ButtonNavigate";
+import Policy from "./containers/PolicyContainer";
+import SplashScreenContainer from "./containers/SplashScreenContainer";
+import ChangePasswordContainer from "./containers/ChangePasswordContainer";
 
 const appRoutes = routes.map((i: any, index: number) => (
   <Route
@@ -32,16 +35,18 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<StartTestContainer />}></Route>
+          <Route path="/" element={<SplashScreenContainer />}></Route>
           <Route path="/login" element={<LoginContainer />}></Route>
           <Route path="/signup" element={<RegisterContainer />}></Route>
           <Route path="/profile" element={<ProfileContainer />}></Route>
           <Route path="/editprofile" element={<EditProfile />}></Route>
+          <Route path="/policy" element={<Policy></Policy>}></Route>
           <Route path="/myresults" element={<MyResultsContainer />}></Route>
           <Route
             path="/myresultdetails"
             element={<MyResultDetailsContainer />}
           ></Route>
+          <Route path="/starttest" element={<StartTestContainer />}></Route>
           <Route path="/test" element={<TestContainer />}></Route>
           <Route
             path="/forgotpassword"
@@ -59,6 +64,14 @@ function App() {
             element={<MainProfile></MainProfile>}
           ></Route>
           <Route path="/board" element={<Onboarding />}></Route>
+          <Route
+            path="/splashscreen"
+            element={<SplashScreenContainer />}
+          ></Route>
+          <Route
+            path="/changepassword"
+            element={<ChangePasswordContainer />}
+          ></Route>
         </Routes>
         <LabelBottomNavigation />
       </BrowserRouter>

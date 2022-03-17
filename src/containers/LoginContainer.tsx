@@ -29,7 +29,7 @@ const LoginContainer = () => {
         const result = await authService.login(values.email, values.password);
         console.log("salam");
         console.log(localStorage.getItem("token"));
-        navigate("/myresults", { replace: true });
+        navigate("/starttest", { replace: true });
       } catch (e) {
         alert(e);
       }

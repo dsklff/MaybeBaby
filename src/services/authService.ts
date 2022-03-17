@@ -1,6 +1,7 @@
+import { Password } from "@mui/icons-material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-const API_URL = "http://ec2-3-70-45-174.eu-central-1.compute.amazonaws.com/api/";
+const API_URL = "https://api.maybebaby.kz/api/";
 
 
 const register = async (email: any, password: any, passwordConfirm: any) => {
@@ -84,6 +85,22 @@ const editProfile = async (nationality: any, gender: any, dob: any, name: any) =
     return response;
 }
 
+const changePassword = async (currentPassword: any, newPassword: any, newPasswordConfirm: any) => {
+    const token = localStorage.getItem('token');
+
+    if(!token) {
+        return;
+    }
+    const response = await axios
+        .put(API_URL + "user", {password: currentPassword, newPassword: newPassword, newPassword_confirmation: newPasswordConfirm}, {
+            headers: {
+                'Authorization': `Bearer ${JSON.parse(token)}`
+            }  
+    });
+    
+    return response;
+}
+
 const forgotPassword = async (email: any) => {
     const response = await axios
         .post(API_URL + "forgot-password", {email: email});
@@ -106,7 +123,8 @@ const authService = {
     getProfile,
     editProfile,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    changePassword
 }
 
 export default authService;

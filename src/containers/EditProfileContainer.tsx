@@ -12,6 +12,7 @@ import moment from "moment";
 import "../styles/common-styles.css";
 import "../styles/EditProfileContainer.css";
 import "../material.css";
+import RequireAuth from "../components/RequireAuth";
 
 const theme = createTheme({
   components: {
@@ -145,4 +146,4 @@ const EditProfileContainer = () => {
   );
 };
 
-export default EditProfileContainer;
+export default RequireAuth(EditProfileContainer);

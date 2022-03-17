@@ -89,14 +89,18 @@ const LabelBottomNavigation = () => {
     <div>
       {location.pathname !== "/login" &&
       location.pathname !== "/signup" &&
-      location.pathname !== "/forgotpassword" ? (
+      location.pathname !== "/forgotpassword" &&
+      location.pathname !== "/policy" &&
+      location.pathname !== "/splashscreen" &&
+      location.pathname !== "/onboarding" &&
+      location.pathname !== "/" ? (
         <div className="app-navigation">
           <BottomNavigation value={value} onChange={handleChange}>
             <BottomNavigationAction
               label="Новый тест"
               value="newtest"
               icon={<TestIcon />}
-              onClick={() => navigate("/", { replace: true })}
+              onClick={() => navigate("/starttest", { replace: true })}
             />
             <BottomNavigationAction
               label="Guide"

@@ -6,6 +6,7 @@ import LabelBottomNavigation from "./ButtonNavigate";
 import info from "../static/svg/info.svg";
 import "../styles/StartTestContainer.css";
 import "../styles/common-styles.css";
+import RequireAuth from "../components/RequireAuth";
 
 const StartTestContainer = () => {
   let navigate = useNavigate();
@@ -34,4 +35,4 @@ const StartTestContainer = () => {
   );
 };
 
-export default StartTestContainer;
+export default RequireAuth(StartTestContainer);

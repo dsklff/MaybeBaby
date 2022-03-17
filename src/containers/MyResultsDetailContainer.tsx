@@ -67,7 +67,7 @@ const MyResultsDetailContainer = () => {
         <h1 className="my-result__header">
           <button
             className="close-btn"
-            onClick={() => navigate("/", { replace: true })}
+            onClick={() => navigate("/myresults", { replace: true })}
           >
             <img src={CloseBtn} alt="close" />
           </button>

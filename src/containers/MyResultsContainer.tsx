@@ -40,26 +40,44 @@ const MyResultsContainer = () => {
   const renderResults = () => {
     return (
       <div>
-        {results?.map((x) => (
-          <li
-            className="result__item"
-            onClick={() =>
-              navigate("/myresultdetails", {
-                replace: true,
-                state: { date: x.date },
-              })
-            }
+        {results?.length !== 0 ? (
+          <div>
+            {results?.map((x) => (
+              <li
+                className="result__item"
+                onClick={() =>
+                  navigate("/myresultdetails", {
+                    replace: true,
+                    state: { date: x.date },
+                  })
+                }
+              >
+                <h2 className="result__title">
+                  {moment(x.date).format("DD-MM-YYYY")}
+                </h2>
+                <h3 className="result__subtitle">3 фактора риска</h3>
+                <button className="result__btn">
+                  <span className="result__text">4 пункта рекомедации</span>
+                  <img
+                    className="result__img"
+                    src={arrowBlue}
+                    alt="arrow-blue"
+                  />
+                </button>
+              </li>
+            ))}
+          </div>
+        ) : (
+          <div
+            style={{
+              textAlign: "center",
+              verticalAlign: "middle",
+              lineHeight: "50vh",
+            }}
           >
-            <h2 className="result__title">
-              {moment(x.date).format("DD-MM-YYYY")}
-            </h2>
-            <h3 className="result__subtitle">3 фактора риска</h3>
-            <button className="result__btn">
-              <span className="result__text">4 пункта рекомедации</span>
-              <img className="result__img" src={arrowBlue} alt="arrow-blue" />
-            </button>
-          </li>
-        ))}
+            Нет результатов
+          </div>
+        )}
       </div>
     );
   };

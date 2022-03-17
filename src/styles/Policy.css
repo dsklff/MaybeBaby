@@ -1,0 +1,51 @@
+.policy__img {
+  margin: 0 auto 35px;
+  display: block;
+}
+
+.policy__title {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 125%;
+  color: #1a2a2e;
+}
+
+.policy__text {
+  margin-bottom: 26px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  color: #1a2a2e;
+}
+
+.policy-list {
+  margin-bottom: 22px;
+}
+
+.policy-list__item {
+  position: relative;
+  padding: 0 0 0 15px;
+}
+
+.policy-list__item + .policy-list__item {
+  margin-top: 13px;
+}
+
+.policy-list__title {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 125%;
+  color: #1a2a2e;
+}
+
+.policy-list__text {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 125%;
+  color: #1a2a2e;
+}
+
+.policy .policy + .policy {
+  margin-top: 22px;
+}

@@ -14,6 +14,7 @@ import "../styles/TestContainer.css";
 import "../styles/common-styles.css";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
+import RequireAuth from "../components/RequireAuth";
 
 interface Option {
   id: number;
@@ -270,4 +271,4 @@ const TestContainer = () => {
   );
 };
 
-export default TestContainer;
+export default RequireAuth(TestContainer);

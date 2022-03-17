@@ -30,7 +30,7 @@ const RegisterSecondStepForm = () => {
           values.name
         );
         console.log(result);
-        navigate("/", { replace: true });
+        navigate("/starttest", { replace: true });
       } catch (e) {
         console.log(e);
       }
@@ -43,7 +43,7 @@ const RegisterSecondStepForm = () => {
         <ul className="app-wrapper app-list">
           <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="name">
-              Name
+              Имя
             </label>
             <input
               className="app-input"
@@ -57,7 +57,7 @@ const RegisterSecondStepForm = () => {
           </li>
           <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="nationality">
-              Nationality
+              Национальность
             </label>
             <select
               className="app-input"
@@ -75,7 +75,7 @@ const RegisterSecondStepForm = () => {
           </li>
           <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="gender">
-              Sex
+              Пол
             </label>
             <select
               className="app-input"
@@ -86,9 +86,9 @@ const RegisterSecondStepForm = () => {
               onChange={formik.handleChange}
               value={formik.values.gender}
             >
-              <option value={-1} label="Select.."></option>
-              <option value={0} label="Female"></option>
-              <option value={1} label="Male"></option>
+              <option value={-1} label="Выбрать.."></option>
+              <option value={0} label="Женский"></option>
+              <option value={1} label="Мужской"></option>
             </select>
           </li>
 
@@ -98,7 +98,7 @@ const RegisterSecondStepForm = () => {
             </label>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <MobileDatePicker
-                label="Date of birthday"
+                label="Дата Рождения"
                 inputFormat="MM/dd/yyyy"
                 value={formik.values.dob}
                 onChange={(val) => {

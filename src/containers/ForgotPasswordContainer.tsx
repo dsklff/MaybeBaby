@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ForgotPasswordFirstStepForm from "../components/ForgotPasswordFirstStepForm";
 import ForgotPasswordSecondStepForm from "../components/ForgotPasswordSecondStepForm";
 import ForgotPasswordThirdStepForm from "../components/ForgotPasswordThirdStepForm";
@@ -10,6 +11,7 @@ import "../styles/ForgotPasswordContainer.css";
 const ForgotPasswordContainer = () => {
   const [step, setStep] = useState<number>(1);
   const [email, setEmail] = useState<string>("");
+  let navigate = useNavigate();
 
   const setUserEmail = (email: string) => {
     setEmail(email);
@@ -50,7 +52,10 @@ const ForgotPasswordContainer = () => {
   return (
     <div className="app-container forgot">
       <div className="title-wrapper">
-        <button className="arrow-btn">
+        <button
+          className="arrow-btn"
+          onClick={() => navigate("/login", { replace: true })}
+        >
           <img src={ArrowIcon} alt="arrow" />
         </button>
 

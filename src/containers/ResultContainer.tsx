@@ -6,6 +6,7 @@ import "../styles/ResultContainer.css";
 import mainService from "../services/mainService";
 import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
+import RequireAuth from "../components/RequireAuth";
 
 interface Result {
   question: string;
@@ -60,7 +61,7 @@ const ResultContainer = () => {
         <h1 className="my-result__header">
           <button
             className="close-btn"
-            onClick={() => navigate("/", { replace: true })}
+            onClick={() => navigate("/myresults", { replace: true })}
           >
             <img src={CloseBtn} alt="close" />
           </button>
@@ -109,4 +110,4 @@ const ResultContainer = () => {
   );
 };
 
-export default ResultContainer;
+export default RequireAuth(ResultContainer);

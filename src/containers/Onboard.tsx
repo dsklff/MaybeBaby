@@ -14,7 +14,10 @@ import Slider3 from "../static/img/slide-3.png";
 import Slider4 from "../static/img/slide-1.png";
 import ArrowForward from "../static/img/button-circle.png";
 import "../styles/Onboarding.css";
+import { useNavigate } from "react-router-dom";
 const Onboarding = () => {
+  let navigate = useNavigate();
+
   return (
     <div className="background-onboarding">
       <div className="app-container onboarding">
@@ -23,7 +26,10 @@ const Onboarding = () => {
             Ру
           </button>
           <button className="onboarding__btn">Каз</button>
-          <button className="onboarding__btn onboarding__btn--pass">
+          <button
+            className="onboarding__btn onboarding__btn--pass"
+            onClick={() => navigate("/policy", { replace: true })}
+          >
             Пропустить
           </button>
         </div>
@@ -67,7 +73,10 @@ const Onboarding = () => {
           </Swiper>
         </div>
 
-        <button className="onboarding__forward">
+        <button
+          className="onboarding__forward"
+          onClick={() => navigate("/policy", { replace: true })}
+        >
           <img src={ArrowForward} alt="arrow" />
         </button>
       </div>
