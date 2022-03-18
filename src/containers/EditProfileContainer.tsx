@@ -3,7 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../services/authService";
 import MobileDatePicker from "@mui/lab/MobileDatePicker";
-import { createTheme, TextField } from "@mui/material";
+import {
+  Backdrop,
+  CircularProgress,
+  createTheme,
+  TextField,
+} from "@mui/material";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import type {} from "@mui/lab/themeAugmentation";
@@ -13,6 +18,7 @@ import "../styles/common-styles.css";
 import "../styles/EditProfileContainer.css";
 import "../material.css";
 import RequireAuth from "../components/RequireAuth";
+import mainService from "../services/mainService";
 
 const theme = createTheme({
   components: {
@@ -28,14 +34,15 @@ const theme = createTheme({
 
 const EditProfileContainer = () => {
   const [profile, setProfile] = useState<any>(undefined);
+  const [nationalities, setNationalities] = useState<any>();
   let navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      nationality: "",
-      dob: "",
-      gender: "",
+      name: profile && profile.name,
+      nationality: profile && profile.nationality,
+      dob: profile && profile.dob,
+      gender: profile && profile.gender,
     },
     onSubmit: async (values) => {
       try {
@@ -55,11 +62,18 @@ const EditProfileContainer = () => {
 
   useEffect(() => {
     loadProfile();
+    loadNationalities();
   }, []);
 
   const loadProfile = async () => {
     const result = await authService.getProfile();
     setProfile(result && result.data);
+    console.log(result);
+  };
+
+  const loadNationalities = async () => {
+    const result = await mainService.getNationalities();
+    setNationalities(result && result.data);
     console.log(result);
   };
 
@@ -70,103 +84,48 @@ const EditProfileContainer = () => {
         <ul className="app-wrapper app-list">
           <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="name">
-              Name
+              Имя
             </label>
             <input
               className="app-input"
               id="name"
-              defaultValue={undefined}
               name="name"
-              placeholder="Type name"
+              defaultValue={profile && profile.name}
+              placeholder="Введите имя"
               onChange={formik.handleChange}
               value={formik.values.name}
             />
           </li>
           <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="nationality">
-              Nationality
+              Национальность
             </label>
             <select
               className="app-input"
               id="nationality"
-              defaultValue={undefined}
               name="nationality"
-              placeholder="Select nationality.."
+              placeholder="Выберите национальность"
               onChange={formik.handleChange}
               value={formik.values.nationality}
             >
-              <option value="-1" label="Select.."></option>
-              <option value="Kazakh" label="Kazakh"></option>
-              <option value="Russian" label="Russian"></option>
+              <option value="-1" label="Выбрать.."></option>
+              <option value="Kazakh" label="Казах/Казашка"></option>
+              <option value="Russian" label="Русский/Русская"></option>
             </select>
           </li>
           <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="gender">
-              Sex
+              Пол
             </label>
             <select
               className="app-input"
               id="gender"
-              defaultValue={undefined}
               name="gender"
               placeholder="Select gender"
               onChange={formik.handleChange}
               value={formik.values.gender}
             >
-              <option value={-1} label="Select.."></option>
-              <option value={0} label="Female"></option>
-              <option value={1} label="Male"></option>
-            </select>
-          </li>
-
-          <li className="app-list__item">
-            <label className="edit-profile__label" htmlFor="job">
-              Введите профессию
-            </label>
-            <input
-              className="app-input"
-              id="job"
-              defaultValue={undefined}
-              name="job"
-              placeholder="Type job"
-              onChange={formik.handleChange}
-              value={formik.values.name}
-            />
-          </li>
-
-          <li className="app-list__item">
-            <label className="edit-profile__label" htmlFor="city">
-              Выберите город
-            </label>
-            <select
-              className="app-input"
-              id="city"
-              defaultValue={undefined}
-              name="city"
-              placeholder="Select nationality.."
-              onChange={formik.handleChange}
-              value={formik.values.nationality}
-            >
-              <option value="-1" label="Select.."></option>
-              <option value="Kazakh" label="Kazakh"></option>
-              <option value="Russian" label="Russian"></option>
-            </select>
-          </li>
-
-          <li className="app-list__item">
-            <label className="edit-profile__label" htmlFor="family-status">
-              Семейное положение
-            </label>
-            <select
-              className="app-input"
-              id="family-status"
-              defaultValue={undefined}
-              name="family-status"
-              placeholder="Select family status"
-              onChange={formik.handleChange}
-              value={formik.values.gender}
-            >
-              <option value={-1} label="Select.."></option>
+              <option value={-1} label="Выбрать.."></option>
               <option value={0} label="Female"></option>
               <option value={1} label="Male"></option>
             </select>
@@ -174,12 +133,12 @@ const EditProfileContainer = () => {
 
           <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="dob">
-              Date of birthday
+              Дата рождения
             </label>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <MobileDatePicker
-                label="Date of birthday"
-                inputFormat="MM/dd/yyyy"
+                label="Дата рождения"
+                inputFormat="dd/MM/yyyy"
                 value={formik.values.dob}
                 onChange={(val) => {
                   console.log("___", val);

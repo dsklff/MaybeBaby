@@ -70,10 +70,66 @@ const getTestResultsByQuery = async (date: string) => {
     return response;
 }
 
+const getCities = async () => {
+    const token = localStorage.getItem('token');
+
+    if(!token) {
+        return;
+    }
+    
+    const response = await axios
+        .get(API_URL + 'cities', {
+            headers: {
+                'Authorization': `Bearer ${JSON.parse(token)}`
+            }
+        })
+
+    return response;
+}
+
+const getNationalities = async () => {
+    const token = localStorage.getItem('token');
+
+    if(!token) {
+        return;
+    }
+    
+    const response = await axios
+        .get(API_URL + 'nationalities', {
+            headers: {
+                'Authorization': `Bearer ${JSON.parse(token)}`
+            }
+        })
+
+    return response;
+}
+
+const getMarriageStatuses = async () => {
+    const token = localStorage.getItem('token');
+
+    if(!token) {
+        return;
+    }
+    
+    const response = await axios
+        .get(API_URL + 'marriage-statuses', {
+            headers: {
+                'Authorization': `Bearer ${JSON.parse(token)}`
+            }
+        })
+
+    return response;
+}
+
+
+
 const mainService = {
     startTest,
     endTest,
     getTestResults,
-    getTestResultsByQuery
+    getTestResultsByQuery,
+    getCities,
+    getMarriageStatuses,
+    getNationalities
 }
 export default mainService;

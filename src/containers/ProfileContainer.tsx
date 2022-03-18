@@ -1,3 +1,4 @@
+import { Backdrop, CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RequireAuth from "../components/RequireAuth";
@@ -11,15 +12,18 @@ import "../styles/ProfileContainer.css";
 const ProfileContainer = () => {
   const [profile, setProfile] = useState<any>(undefined);
   let navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     loadProfile();
   }, []);
 
   const loadProfile = async () => {
+    setIsLoading(true);
     const result = await authService.getProfile();
     setProfile(result && result.data);
     console.log(result);
+    setIsLoading(false);
   };
 
   return (
@@ -43,7 +47,7 @@ const ProfileContainer = () => {
           </li>
           <li className="app-list__item">
             <span>Пол: </span>
-            {profile && profile.gender}
+            {profile && profile.gender === 0 ? "Женский" : "Мужской"}
           </li>
           <li className="app-list__item">
             <span>Национальность: </span>
@@ -54,6 +58,12 @@ const ProfileContainer = () => {
             {profile && profile.dob}
           </li>
         </ul>
+        <button
+          className="action-btn"
+          onClick={() => navigate("/editprofile", { replace: true })}
+        >
+          Изменить профиль
+        </button>
         <button
           className="action-btn"
           onClick={() => navigate("/changepassword", { replace: true })}
@@ -67,12 +77,13 @@ const ProfileContainer = () => {
           Выйти
         </button>
       </div>
-      <button
-        className="app-btn"
-        onClick={() => navigate("/editprofile", { replace: true })}
+
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoading}
       >
-        Изменить профиль
-      </button>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 };

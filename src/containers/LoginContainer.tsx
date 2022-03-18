@@ -6,10 +6,12 @@ import authService from "../services/authService";
 import Checkbox from "@mui/material/Checkbox";
 import "../styles/LoginContainer.css";
 import "../styles/common-styles.css";
+import { Backdrop, CircularProgress } from "@mui/material";
 
 const LoginContainer = () => {
   let navigate = useNavigate();
   const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -26,10 +28,10 @@ const LoginContainer = () => {
     },
     onSubmit: async (values) => {
       try {
+        setIsLoading(true);
         const result = await authService.login(values.email, values.password);
-        console.log("salam");
-        console.log(localStorage.getItem("token"));
         navigate("/starttest", { replace: true });
+        setIsLoading(false);
       } catch (e) {
         alert(e);
       }
@@ -90,6 +92,12 @@ const LoginContainer = () => {
       <button className="action-btn action-btn--center">
         <Link to="/signup">Зарегистрироваться</Link>
       </button>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 };

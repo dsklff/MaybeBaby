@@ -8,6 +8,7 @@ import "../styles/MyResultsContainer.css";
 import "../styles/common-styles.css";
 import mainService from "../services/mainService";
 import moment from "moment";
+import { Backdrop, CircularProgress } from "@mui/material";
 
 interface Result {
   question: string;
@@ -23,6 +24,7 @@ interface FullResult {
 
 const MyResultsContainer = () => {
   const [results, setResults] = useState<FullResult[]>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -30,11 +32,13 @@ const MyResultsContainer = () => {
   }, []);
 
   const loadResults = async () => {
+    setIsLoading(true);
     const results = await mainService.getTestResults();
 
     const result = results && results.data.results;
 
     setResults(result);
+    setIsLoading(false);
   };
 
   const renderResults = () => {
@@ -92,6 +96,12 @@ const MyResultsContainer = () => {
         <ul className="result__list">{renderResults()}</ul>
         <button onClick={() => logOut()}></button>
       </div>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 };

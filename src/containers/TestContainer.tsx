@@ -1,6 +1,6 @@
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import MobileDatePicker from "@mui/lab/MobileDatePicker";
-import { TextField } from "@mui/material";
+import { Backdrop, CircularProgress, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import mainService from "../services/mainService";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -53,7 +53,11 @@ const TestContainer = () => {
   const [questions, setQuestions] = useState<Question[]>();
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [isButtonQuestion, setIsButtonQuestion] = useState<boolean>(false);
+  const [currentQuestion, setCurrentQuestion] = useState<number>(1);
+  const [questionCount, setQuestionCount] = useState<number>(0);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const today = new Date().toLocaleDateString();
 
   const validate = (values: any) => {
     const errors: any = {};
@@ -68,6 +72,7 @@ const TestContainer = () => {
   const checkDataForValid = (value: string) => {
     let result: any;
     if (moment(value, "YYYY-MM-DD", true).isValid()) {
+      console.log("smth");
       result = moment(value).format("YYYY-MM-DD");
     } else {
       result = value;
@@ -78,12 +83,13 @@ const TestContainer = () => {
 
   const nextQuestion = async () => {
     const value = checkDataForValid(formik.values.value);
-    const availableQuestions = questions?.filter((x) => x.order > currentOrder);
 
     const updatedAnswers = [
       ...answers,
-      { option_id: formik.values.option_id, value: formik.values.value },
+      { option_id: formik.values.option_id, value: value },
     ];
+
+    let availableQuestions = questions?.filter((x) => x.order > currentOrder);
 
     if (availableQuestions && availableQuestions?.length > 0) {
       let i: number = 1;
@@ -92,23 +98,26 @@ const TestContainer = () => {
           question?.option_id !== null &&
           !updatedAnswers.some((a) => a.option_id === question?.option_id)
         ) {
+          availableQuestions = availableQuestions?.filter(
+            (x) => x.option_id !== question.option_id
+          );
         } else {
           setCurrentOrder(currentOrder + i);
-          break;
+          setCurrentQuestion((prevState) => prevState + i);
+          return;
         }
 
         i++;
       }
-    } else {
-      try {
-        addAnswerValue(formik.values.option_id!, value);
-        await Promise.resolve();
-        const result = await mainService.endTest(answers);
-        console.log(result?.data.results);
-        navigate("/result", { replace: true, state: result?.data.results });
-      } catch (e) {
-        alert(e);
-      }
+    }
+
+    try {
+      const result = await mainService.endTest(updatedAnswers);
+      console.log(result?.data.results);
+      navigate("/result", { replace: true, state: result?.data.results });
+    } catch (e) {
+      alert(e);
+      console.log(e);
     }
   };
 
@@ -173,14 +182,19 @@ const TestContainer = () => {
   }, [currentOrder]);
 
   const loadQuestions = async () => {
+    setIsLoading(true);
     const result = await mainService.startTest();
     const sortedResult =
       result &&
       result.data.survey.questions.sort(
         (a: Question, b: Question) => a.order - b.order
       );
+
+    console.log(sortedResult);
+    setQuestionCount(sortedResult.length);
     setQuestions(sortedResult);
     checkIsButtonQuestion(sortedResult);
+    setIsLoading(false);
   };
 
   const elementForOption = (option: Option) => {
@@ -210,7 +224,8 @@ const TestContainer = () => {
         return (
           <MobileDatePicker
             label="Date of birthday"
-            inputFormat="MM/dd/yyyy"
+            inputFormat="dd/MM/yyyy"
+            maxDate={today}
             value={formik.values.value}
             onChange={(val) => {
               formik.setFieldValue("value", val);
@@ -250,7 +265,10 @@ const TestContainer = () => {
           />
         </button>
         <h1 className="app-title">Анкета</h1>
-        <LinearDeterminate />
+        <LinearDeterminate
+          currentQuestion={currentQuestion}
+          questionCount={questionCount}
+        />
         <h4 className="test__title">Расскажите нам немного о себе</h4>
 
         <form className="test__form" onSubmit={formik.handleSubmit}>
@@ -267,6 +285,12 @@ const TestContainer = () => {
           </LocalizationProvider>
         </form>
       </div>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 };
