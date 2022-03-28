@@ -8,6 +8,7 @@ import { NumericLiteral } from "typescript";
 import { useFormik } from "formik";
 import { urlToHttpOptions } from "url";
 import LinearDeterminate from "../components/Progress";
+import ruLocale from "date-fns/locale/ru";
 
 import ArrowIcon from "../static/svg/Arrow.svg";
 import "../styles/TestContainer.css";
@@ -114,7 +115,10 @@ const TestContainer = () => {
     try {
       const result = await mainService.endTest(updatedAnswers);
       console.log(result?.data.results);
-      navigate("/result", { replace: true, state: result?.data.results });
+      navigate("/percentprogress", {
+        replace: true,
+        state: result?.data.results,
+      });
     } catch (e) {
       alert(e);
       console.log(e);
@@ -223,7 +227,7 @@ const TestContainer = () => {
       case "date":
         return (
           <MobileDatePicker
-            label="Date of birthday"
+            label="Введите дату"
             inputFormat="dd/MM/yyyy"
             maxDate={today}
             value={formik.values.value}
@@ -272,7 +276,7 @@ const TestContainer = () => {
         <h4 className="test__title">Расскажите нам немного о себе</h4>
 
         <form className="test__form" onSubmit={formik.handleSubmit}>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <LocalizationProvider dateAdapter={AdapterDateFns} locale={ruLocale}>
             {renderQuestion(currentOrder)}
             {formik.errors.option_id ? (
               <div>{formik.errors.option_id}</div>

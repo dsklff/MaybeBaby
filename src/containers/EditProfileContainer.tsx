@@ -2,6 +2,7 @@ import { useField, useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../services/authService";
+import ruLocale from "date-fns/locale/ru";
 import MobileDatePicker from "@mui/lab/MobileDatePicker";
 import {
   Backdrop,
@@ -13,12 +14,19 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import type {} from "@mui/lab/themeAugmentation";
 import moment from "moment";
+import Box from "@mui/material/Box";
+import Autocomplete from "@mui/material/Autocomplete";
 
 import "../styles/common-styles.css";
 import "../styles/EditProfileContainer.css";
 import "../material.css";
 import RequireAuth from "../components/RequireAuth";
 import mainService from "../services/mainService";
+import {
+  cities,
+  marriageStatuses,
+  nationalities,
+} from "../common/dictionaries";
 
 const theme = createTheme({
   components: {
@@ -34,7 +42,7 @@ const theme = createTheme({
 
 const EditProfileContainer = () => {
   const [profile, setProfile] = useState<any>(undefined);
-  const [nationalities, setNationalities] = useState<any>();
+  const [inputValue, setInputValue] = React.useState("");
   let navigate = useNavigate();
 
   const formik = useFormik({
@@ -43,6 +51,9 @@ const EditProfileContainer = () => {
       nationality: profile && profile.nationality,
       dob: profile && profile.dob,
       gender: profile && profile.gender,
+      city: profile && profile.city,
+      familyStatus: profile && profile.marriage_status,
+      profession: profile && profile.status,
     },
     onSubmit: async (values) => {
       try {
@@ -50,7 +61,10 @@ const EditProfileContainer = () => {
           values.nationality,
           values.gender,
           moment(values.dob).format("YYYY-MM-DD hh:mm:ss"),
-          values.name
+          values.name,
+          values.city,
+          values.profession,
+          values.familyStatus
         );
         console.log(result);
         navigate("/profile", { replace: true });
@@ -62,19 +76,12 @@ const EditProfileContainer = () => {
 
   useEffect(() => {
     loadProfile();
-    loadNationalities();
   }, []);
 
   const loadProfile = async () => {
     const result = await authService.getProfile();
     setProfile(result && result.data);
-    console.log(result);
-  };
-
-  const loadNationalities = async () => {
-    const result = await mainService.getNationalities();
-    setNationalities(result && result.data);
-    console.log(result);
+    console.log(result && result.data);
   };
 
   return (
@@ -108,9 +115,10 @@ const EditProfileContainer = () => {
               onChange={formik.handleChange}
               value={formik.values.nationality}
             >
-              <option value="-1" label="Выбрать.."></option>
-              <option value="Kazakh" label="Казах/Казашка"></option>
-              <option value="Russian" label="Русский/Русская"></option>
+              {nationalities &&
+                nationalities.map((x: any) => (
+                  <option value={x.value}>{x.title}</option>
+                ))}
             </select>
           </li>
           <li className="app-list__item">
@@ -121,13 +129,103 @@ const EditProfileContainer = () => {
               className="app-input"
               id="gender"
               name="gender"
-              placeholder="Select gender"
+              placeholder="Выберите пол"
               onChange={formik.handleChange}
               value={formik.values.gender}
             >
-              <option value={-1} label="Выбрать.."></option>
-              <option value={0} label="Female"></option>
-              <option value={1} label="Male"></option>
+              <option value={0} label="Женский"></option>
+            </select>
+          </li>
+
+          <li className="app-list__item">
+            <label className="edit-profile__label" htmlFor="profession">
+              Введите национальность
+            </label>
+            <Autocomplete
+              id="country-select-demo"
+              sx={{ width: 300 }}
+              options={nationalities}
+              autoHighlight
+              getOptionLabel={(option) => option.title}
+              renderOption={(props, option) => (
+                <Box component="li" {...props} value={option.value}>
+                  {option.title}
+                </Box>
+              )}
+              inputValue={inputValue}
+              onInputChange={(_, newInputValue) => {
+                setInputValue(newInputValue);
+                console.log(newInputValue);
+              }}
+              value={formik.values.nationality}
+              onChange={(val) => {
+                console.log("___", val);
+                formik.setFieldValue("nationality", val);
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  inputProps={{
+                    ...params.inputProps,
+                    autoComplete: "new-password", // disable autocomplete and autofill
+                  }}
+                />
+              )}
+            />
+          </li>
+
+          <li className="app-list__item">
+            <label className="edit-profile__label" htmlFor="profession">
+              Введите профессию
+            </label>
+            <input
+              className="app-input"
+              id="profession"
+              defaultValue={undefined}
+              name="profession"
+              placeholder="Введите профессию.."
+              onChange={formik.handleChange}
+              value={formik.values.profession}
+            />
+          </li>
+
+          <li className="app-list__item">
+            <label className="edit-profile__label" htmlFor="city">
+              Выберите город
+            </label>
+            <select
+              className="app-input"
+              id="city"
+              defaultValue={undefined}
+              name="city"
+              placeholder="Выберите город.."
+              onChange={formik.handleChange}
+              value={formik.values.city}
+            >
+              {cities &&
+                cities.map((x: any) => (
+                  <option value={x.value}>{x.title}</option>
+                ))}
+            </select>
+          </li>
+
+          <li className="app-list__item">
+            <label className="edit-profile__label" htmlFor="familyStatus">
+              Семейное положение
+            </label>
+            <select
+              className="app-input"
+              id="familyStatus"
+              defaultValue={undefined}
+              name="familyStatus"
+              placeholder="Select family status"
+              onChange={formik.handleChange}
+              value={formik.values.familyStatus}
+            >
+              {marriageStatuses &&
+                marriageStatuses.map((x: any) => (
+                  <option value={x.value}>{x.title}</option>
+                ))}
             </select>
           </li>
 
@@ -135,7 +233,10 @@ const EditProfileContainer = () => {
             <label className="edit-profile__label" htmlFor="dob">
               Дата рождения
             </label>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <LocalizationProvider
+              dateAdapter={AdapterDateFns}
+              locale={ruLocale}
+            >
               <MobileDatePicker
                 label="Дата рождения"
                 inputFormat="dd/MM/yyyy"

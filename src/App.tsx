@@ -21,6 +21,7 @@ import LabelBottomNavigation from "./containers/ButtonNavigate";
 import Policy from "./containers/PolicyContainer";
 import SplashScreenContainer from "./containers/SplashScreenContainer";
 import ChangePasswordContainer from "./containers/ChangePasswordContainer";
+import CircularStatic from "./components/PercentProgress";
 
 const appRoutes = routes.map((i: any, index: number) => (
   <Route
@@ -55,6 +56,7 @@ function App() {
           <Route path="/guide" element={<CustomizedAccordions />}></Route>
           <Route path="/onboarding" element={<Onboarding />}></Route>
           <Route path="/result" element={<ResultContainer />}></Route>
+          <Route path="/percentprogress" element={<CircularStatic />}></Route>
           <Route
             path="/progress"
             element={<CircularProgressWithLabel></CircularProgressWithLabel>}

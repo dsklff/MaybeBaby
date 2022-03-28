@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import ArrowIcon from "../static/svg/Arrow.svg";
 import "../styles/common-styles.css";
 import "../styles/AccordeonContainer.css";
+import { useNavigate } from "react-router-dom";
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -50,6 +51,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 export default function CustomizedAccordions() {
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
+  let navigate = useNavigate();
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
@@ -59,7 +61,10 @@ export default function CustomizedAccordions() {
   return (
     <div className="app-container accordeon">
       <div className="title-wrapper">
-        <button className="arrow-btn">
+        <button
+          className="arrow-btn"
+          onClick={() => navigate("/starttest", { replace: true })}
+        >
           <img src={ArrowIcon} alt="arrow" />
         </button>
         <h1 className="app-title">Справочник</h1>

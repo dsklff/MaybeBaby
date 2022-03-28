@@ -14,18 +14,28 @@ const register = async (email: any, password: any, passwordConfirm: any) => {
 };
 
 const login = async (email: any, password: any) => {
-  return await axios
-    .post(API_URL + "login", {
-      email,
-      password,
-      device_name: 'deviceName'
-    })
-    .then((response) => {
-      if (response.status === 200 && response.data.token) {
-        localStorage.setItem("token", JSON.stringify(response.data.token));
-      }
-      return response.data;
-    });
+    try {
+        await axios
+        .post(API_URL + "login", {
+          email,
+          password,
+          device_name: 'deviceName'
+        })
+        .then((response) => {
+          if (response.status === 200 && response.data.token) {
+            localStorage.setItem("token", JSON.stringify(response.data.token));
+          } else if (response.status === 422) {
+              alert("Неправильный логин и/или пароль")
+          }
+         
+          return response.data;
+        });
+    } catch (error: any) {
+        if(error.response.status === 422) {
+            alert("Неправильный логин и/или пароль")
+        }
+    }
+
 };
 
 const logout = () => {
@@ -69,7 +79,23 @@ const getProfile = async () => {
     return response;
 }
 
-const editProfile = async (nationality: any, gender: any, dob: any, name: any) => {
+const editProfile = async (nationality: any, gender: any, dob: any, name: any, city: any, profession: any, marriage_status: any) => {
+    const token = localStorage.getItem('token');
+
+    if(!token) {
+        return;
+    }
+    const response = await axios
+        .put(API_URL + "user", {name: name, nationality: nationality, gender: gender, dob: dob, city: city, profession: profession, marriage_status: marriage_status}, {
+            headers: {
+                'Authorization': `Bearer ${JSON.parse(token)}`
+            }  
+    });
+    
+    return response;
+}
+
+const registerSecondStep = async (nationality: any, gender: any, dob: any, name: any) => {
     const token = localStorage.getItem('token');
 
     if(!token) {
@@ -124,7 +150,8 @@ const authService = {
     editProfile,
     forgotPassword,
     resetPassword,
-    changePassword
+    changePassword,
+    registerSecondStep
 }
 
 export default authService;

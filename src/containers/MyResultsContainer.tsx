@@ -48,6 +48,7 @@ const MyResultsContainer = () => {
           <div>
             {results?.map((x) => (
               <li
+                key={x.date}
                 className="result__item"
                 onClick={() =>
                   navigate("/myresultdetails", {

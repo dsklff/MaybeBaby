@@ -21,22 +21,22 @@ const RegisterFirstStepForm = (props: Props) => {
     const errors: any = {};
 
     if (!values.email) {
-      errors.email = "Required";
+      errors.email = "Обязательно";
     } else if (
       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
     ) {
-      errors.email = "Invalid email address";
+      errors.email = "Неправильный формат почты";
     }
 
     if (!values.password) {
-      errors.password = "*Required";
+      errors.password = "Обязательно";
     } else if (values.length < 8 && values.length > 50) {
-      errors.password = "*Password must be between 8 and 50 characters long.";
+      errors.password = "Пароль должен быть от 8 до 50 символов";
     }
 
     if (values.password && values.confirmPassword) {
       if (values.password !== values.confirmPassword) {
-        errors.confirmPassword = "Password not matched";
+        errors.confirmPassword = "Пароли не совпадают";
       }
     }
 
@@ -95,7 +95,7 @@ const RegisterFirstStepForm = (props: Props) => {
 
         <TextField
           id="confirmPassword"
-          label="Придумайте пароль"
+          label="Повторите пароль"
           name="confirmPassword"
           type="password"
           onChange={formik.handleChange}

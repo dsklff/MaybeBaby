@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Pagination, SwiperOptions } from "swiper";
 
 // Import Swiper styles
 import "swiper/css";
@@ -15,8 +15,12 @@ import Slider4 from "../static/img/slide-1.png";
 import ArrowForward from "../static/img/button-circle.png";
 import "../styles/Onboarding.css";
 import { useNavigate } from "react-router-dom";
+import { AnySoaRecord } from "dns";
+
 const Onboarding = () => {
   let navigate = useNavigate();
+  const [my_swiper, set_my_swiper] = useState<any>({});
+  const swiper = useSwiper();
 
   return (
     <div className="background-onboarding">
@@ -36,6 +40,9 @@ const Onboarding = () => {
 
         <div className="app-slider">
           <Swiper
+            onInit={(ev) => {
+              set_my_swiper(ev);
+            }}
             slidesPerView={"auto"}
             centeredSlides={true}
             spaceBetween={0}
@@ -75,7 +82,7 @@ const Onboarding = () => {
 
         <button
           className="onboarding__forward"
-          onClick={() => navigate("/policy", { replace: true })}
+          onClick={() => my_swiper.slideNext()}
         >
           <img src={ArrowForward} alt="arrow" />
         </button>

@@ -7,6 +7,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../services/authService";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import ruLocale from "date-fns/locale/ru";
+import { nationalities } from "../common/dictionaries";
 
 import "../styles/common-styles.css";
 import "../material.css";
@@ -23,7 +25,7 @@ const RegisterSecondStepForm = () => {
     },
     onSubmit: async (values) => {
       try {
-        const result = await authService.editProfile(
+        const result = await authService.registerSecondStep(
           values.nationality,
           values.gender,
           moment(values.dob).format("YYYY-MM-DD hh:mm:ss"),
@@ -50,7 +52,7 @@ const RegisterSecondStepForm = () => {
               id="name"
               defaultValue={undefined}
               name="name"
-              placeholder="Type name"
+              placeholder="Введите имя"
               onChange={formik.handleChange}
               value={formik.values.name}
             />
@@ -64,13 +66,14 @@ const RegisterSecondStepForm = () => {
               id="nationality"
               defaultValue={undefined}
               name="nationality"
-              placeholder="Select nationality.."
+              placeholder="Выберите национальность.."
               onChange={formik.handleChange}
               value={formik.values.nationality}
             >
-              <option value="-1" label="Select.."></option>
-              <option value="Kazakh" label="Kazakh"></option>
-              <option value="Russian" label="Russian"></option>
+              <option value="-1" label="Выбрать.."></option>
+              {nationalities.map((x) => (
+                <option value={x.value}>{x.title}</option>
+              ))}
             </select>
           </li>
           <li className="app-list__item">
@@ -82,21 +85,23 @@ const RegisterSecondStepForm = () => {
               id="gender"
               defaultValue={undefined}
               name="gender"
-              placeholder="Select gender"
+              placeholder="Выберите пол.."
               onChange={formik.handleChange}
               value={formik.values.gender}
             >
               <option value={-1} label="Выбрать.."></option>
               <option value={0} label="Женский"></option>
-              <option value={1} label="Мужской"></option>
             </select>
           </li>
 
           <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="dob">
-              Date of birthday
+              Дата рождения
             </label>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <LocalizationProvider
+              dateAdapter={AdapterDateFns}
+              locale={ruLocale}
+            >
               <MobileDatePicker
                 label="Дата Рождения"
                 inputFormat="MM/dd/yyyy"

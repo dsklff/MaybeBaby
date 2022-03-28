@@ -103,7 +103,12 @@ const ResultContainer = () => {
             </ul>
           </div>
 
-          <button className="my-result__btn">Вернуться на главную</button>
+          <button
+            className="my-result__btn"
+            onClick={() => navigate("/starttest", { replace: true })}
+          >
+            Вернуться на главную
+          </button>
         </div>
       </div>
     </div>

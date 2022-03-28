@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 import "../styles/PercentProgress.css";
+import { useNavigate } from "react-router-dom";
 
 const styleForCirlce = {
   width: "260px",
@@ -75,6 +76,7 @@ function CircularProgressWithLabel(
 
 export default function CircularStatic() {
   const [progress, setProgress] = React.useState(1);
+  let navigate = useNavigate();
 
   React.useEffect(() => {
     const timer = setInterval(() => {
@@ -82,6 +84,12 @@ export default function CircularStatic() {
         prevProgress >= 100 ? 0 : prevProgress + 1
       );
     }, 100);
+    console.log("asdasd");
+
+    setTimeout(() => {
+      navigate("/result", { replace: true });
+    }, 10000);
+
     return () => {
       clearInterval(timer);
     };

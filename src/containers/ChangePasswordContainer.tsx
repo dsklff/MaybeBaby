@@ -10,28 +10,28 @@ const validate = (values: any) => {
   const errors: any = {};
 
   if (!values.currentPassword) {
-    errors.currentPassword = "*Required";
+    errors.currentPassword = "*Обязательно";
   }
 
   if (!values.newPassword) {
-    errors.password = "*Required";
+    errors.password = "*Обязательно";
   } else if (values.newPassword.length < 8 && values.newPassword.length > 50) {
-    errors.newPassword = "*Password must be between 8 and 50 characters long.";
+    errors.newPassword = "*Длина пароля должна составлять от 8 до 50 символов";
   }
 
   if (!values.passwordConfirm) {
-    errors.password = "*Required";
+    errors.password = "*Обязательно";
   } else if (
     values.passwordConfirm.length < 8 &&
     values.passwordConfirm.length > 50
   ) {
     errors.passwordConfirm =
-      "*Password must be between 8 and 50 characters long.";
+      "*Длина пароля должна составлять от 8 до 50 символов";
   }
 
   if (values.newPassword && values.passwordConfirm) {
     if (values.newPassword !== values.passwordConfirm) {
-      errors.passwordConfirm = "Password not matched";
+      errors.passwordConfirm = "Пароли не совпадают";
     }
   }
 

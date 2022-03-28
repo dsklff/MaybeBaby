@@ -1,6 +1,12 @@
 import { Backdrop, CircularProgress } from "@mui/material";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  nationalities,
+  marriageStatuses,
+  cities,
+} from "../common/dictionaries";
 import RequireAuth from "../components/RequireAuth";
 import authService from "../services/authService";
 
@@ -51,11 +57,32 @@ const ProfileContainer = () => {
           </li>
           <li className="app-list__item">
             <span>Национальность: </span>
-            {profile && profile.nationality}
+            {profile &&
+              nationalities.find((x) => x.value === profile.nationality) &&
+              nationalities.find((x) => x.value === profile.nationality)!.title}
           </li>
           <li className="app-list__item">
             <span>Дата рождения: </span>
-            {profile && profile.dob}
+            {profile && moment(profile.dob).format("DD-MM-YYYY")}
+          </li>
+          <li className="app-list__item">
+            <span>Профессия: </span>
+            {profile && profile.profession}
+          </li>
+          <li className="app-list__item">
+            <span>Семейное положение: </span>
+            {profile &&
+              marriageStatuses.find(
+                (x) => x.value === profile.marriage_status
+              ) &&
+              marriageStatuses.find((x) => x.value === profile.marriage_status)!
+                .title}
+          </li>
+          <li className="app-list__item">
+            <span>Город: </span>
+            {profile &&
+              cities.find((x) => x.value === profile.city) &&
+              cities.find((x) => x.value === profile.city)!.title}
           </li>
         </ul>
         <button

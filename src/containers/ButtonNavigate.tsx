@@ -103,12 +103,6 @@ const LabelBottomNavigation = () => {
               onClick={() => navigate("/starttest", { replace: true })}
             />
             <BottomNavigationAction
-              label="Guide"
-              value="Guide"
-              icon={<Policy />}
-              onClick={() => navigate("/guide", { replace: true })}
-            />
-            <BottomNavigationAction
               label="Мои тесты"
               value="mytest"
               icon={<MyTests />}

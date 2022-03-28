@@ -18,7 +18,10 @@ const StartTestContainer = () => {
   return (
     <div className="background-start">
       <div className="app-container start-test">
-        <button className="options-btn">
+        <button
+          className="options-btn"
+          onClick={() => navigate("/guide", { replace: true })}
+        >
           <img src={info} alt="info" />
         </button>
         <div className="start-test__wrapper">
