@@ -116,8 +116,14 @@ const RegisterSecondStepForm = () => {
               <option value={-1} label="Выбрать.."></option>
               <option value={0} label="Женский"></option>
             </select> */}
-            <button className="app-choice">Мужской</button>
-            <button className="app-choice">Женский</button>
+            <div className="app-list__sex">
+              <button className="app-choice" disabled>
+                Мужской
+              </button>
+              <button className="app-choice app-choice--selected">
+                Женский
+              </button>
+            </div>
           </li>
         </ul>
 

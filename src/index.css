@@ -43,6 +43,7 @@ li {
 
 select {
   appearance: none;
+  -webkit-appearance: none;
 }
 
 /*Wrappers*/
