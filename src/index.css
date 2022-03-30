@@ -41,6 +41,10 @@ li {
   margin: 0;
 }
 
+select {
+  appearance: none;
+}
+
 /*Wrappers*/
 
 .title-wrapper {

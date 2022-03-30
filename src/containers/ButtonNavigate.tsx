@@ -86,7 +86,7 @@ const LabelBottomNavigation = () => {
   };
 
   return (
-    <div>
+    <>
       {location.pathname !== "/login" &&
       location.pathname !== "/signup" &&
       location.pathname !== "/forgotpassword" &&
@@ -123,7 +123,7 @@ const LabelBottomNavigation = () => {
           </BottomNavigation>
         </div>
       ) : null}
-    </div>
+    </>
   );
 };
 

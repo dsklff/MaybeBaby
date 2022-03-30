@@ -81,24 +81,6 @@ const RegisterSecondStepForm = () => {
             />
           </li>
           <li className="app-list__item">
-            <label className="edit-profile__label" htmlFor="gender">
-              Пол
-            </label>
-            <select
-              className="app-input"
-              id="gender"
-              defaultValue={undefined}
-              name="gender"
-              placeholder="Выберите пол.."
-              onChange={formik.handleChange}
-              value={formik.values.gender}
-            >
-              <option value={-1} label="Выбрать.."></option>
-              <option value={0} label="Женский"></option>
-            </select>
-          </li>
-
-          <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="dob">
               Дата рождения
             </label>
@@ -117,6 +99,25 @@ const RegisterSecondStepForm = () => {
                 renderInput={(params) => <TextField {...params} />}
               />
             </LocalizationProvider>
+          </li>
+          <li className="app-list__item">
+            <label className="edit-profile__label" htmlFor="gender">
+              Пол
+            </label>
+            {/* <select
+              className="app-input"
+              id="gender"
+              defaultValue={undefined}
+              name="gender"
+              placeholder="Выберите пол.."
+              onChange={formik.handleChange}
+              value={formik.values.gender}
+            >
+              <option value={-1} label="Выбрать.."></option>
+              <option value={0} label="Женский"></option>
+            </select> */}
+            <button className="app-choice">Мужской</button>
+            <button className="app-choice">Женский</button>
           </li>
         </ul>
 
