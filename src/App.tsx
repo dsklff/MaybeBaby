@@ -21,7 +21,9 @@ import LabelBottomNavigation from "./containers/ButtonNavigate";
 import Policy from "./containers/PolicyContainer";
 import SplashScreenContainer from "./containers/SplashScreenContainer";
 import ChangePasswordContainer from "./containers/ChangePasswordContainer";
+
 import CircularStatic from "./components/PercentProgress";
+import InformationContainer from "./containers/InformationContainer";
 
 const appRoutes = routes.map((i: any, index: number) => (
   <Route
@@ -74,6 +76,7 @@ function App() {
             path="/changepassword"
             element={<ChangePasswordContainer />}
           ></Route>
+          <Route path="/info" element={<InformationContainer />}></Route>
         </Routes>
         <LabelBottomNavigation />
       </BrowserRouter>

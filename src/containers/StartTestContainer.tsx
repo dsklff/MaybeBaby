@@ -20,7 +20,7 @@ const StartTestContainer = () => {
       <div className="app-container start-test">
         <button
           className="options-btn"
-          onClick={() => navigate("/guide", { replace: true })}
+          onClick={() => navigate("/info", { replace: true })}
         >
           <img src={info} alt="info" />
         </button>

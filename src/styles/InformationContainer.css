@@ -1,0 +1,17 @@
+.info__item + .info__item {
+  margin-top: 16px;
+}
+
+.info__title {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1a2a2e;
+}
+
+.info__text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #1a2a2e;
+}
