@@ -8,6 +8,7 @@ import TextField from "@mui/material/TextField";
 import Checkbox from "@mui/material/Checkbox";
 import "../styles/common-styles.css";
 import "../material.css";
+import { copyFileSync } from "fs";
 
 interface Props {
   nextStep: () => void;
@@ -30,11 +31,13 @@ const RegisterFirstStepForm = (props: Props) => {
 
     if (!values.password) {
       errors.password = "Обязательно";
-    } else if (values.length < 8 && values.length > 50) {
+    } else if (values.password.length < 8 || values.password.length > 50) {
       errors.password = "Пароль должен быть от 8 до 50 символов";
     }
 
-    if (values.password && values.confirmPassword) {
+    if (!values.confirmPassword) {
+      errors.confirmPassword = "Обязательно";
+    } else if (values.password && values.confirmPassword) {
       if (values.password !== values.confirmPassword) {
         errors.confirmPassword = "Пароли не совпадают";
       }
@@ -54,14 +57,25 @@ const RegisterFirstStepForm = (props: Props) => {
     validate,
     onSubmit: async (values) => {
       try {
-        const result = await authService
-          .register(values.email, values.password, values.confirmPassword)
-          .then(async () => {
-            await authService.login(values.email, values.password);
-            props.nextStep();
-          });
+        const response = await authService.register(
+          values.email,
+          values.password,
+          values.confirmPassword
+        );
+
+        if (response === 200) {
+          await authService.login(values.email, values.password);
+          props.nextStep();
+        }
+
+        console.log("aaa");
+        console.log(response);
+        formik.resetForm();
+
+        // await authService.login(values.email, values.password);
+        // props.nextStep();
       } catch (e) {
-        alert(e);
+        console.log(e);
       }
     },
   });
@@ -76,10 +90,9 @@ const RegisterFirstStepForm = (props: Props) => {
           type="email"
           onChange={formik.handleChange}
           value={formik.values.email}
-          error={formik.touched.email && Boolean(formik.errors.email)}
           helperText={formik.touched.email && formik.errors.email}
         />
-        {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+        {/* {formik.errors.email ? <div>{formik.errors.email}</div> : null} */}
 
         <TextField
           id="password"
@@ -88,10 +101,9 @@ const RegisterFirstStepForm = (props: Props) => {
           type="password"
           onChange={formik.handleChange}
           value={formik.values.password}
-          error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
         />
-        {formik.errors.password ? <div>{formik.errors.password}</div> : null}
+        {/* {formik.errors.password ? <div>{formik.errors.password}</div> : null} */}
 
         <TextField
           id="confirmPassword"
@@ -100,12 +112,13 @@ const RegisterFirstStepForm = (props: Props) => {
           type="password"
           onChange={formik.handleChange}
           value={formik.values.confirmPassword}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
+          helperText={
+            formik.touched.confirmPassword && formik.errors.confirmPassword
+          }
         />
-        {formik.errors.confirmPassword ? (
+        {/* {formik.errors.confirmPassword ? (
           <div>{formik.errors.confirmPassword}</div>
-        ) : null}
+        ) : null} */}
         <div className="policy">
           <Checkbox
             onChange={() => setIsChecked(!isChecked)}

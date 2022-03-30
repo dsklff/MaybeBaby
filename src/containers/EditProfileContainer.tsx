@@ -40,9 +40,20 @@ const theme = createTheme({
   },
 });
 
+interface Profile {
+  name: string;
+  nationality: string;
+  dob: any;
+  gender: number;
+  city: string;
+  marriage_status: number;
+  profession: string;
+}
+
 const EditProfileContainer = () => {
-  const [profile, setProfile] = useState<any>(undefined);
+  const [profile, setProfile] = useState<Profile>();
   const [inputValue, setInputValue] = React.useState("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   let navigate = useNavigate();
 
   const formik = useFormik({
@@ -52,11 +63,13 @@ const EditProfileContainer = () => {
       dob: profile && profile.dob,
       gender: profile && profile.gender,
       city: profile && profile.city,
-      familyStatus: profile && profile.marriage_status,
-      profession: profile && profile.status,
+      marriage_status: profile && profile.marriage_status,
+      profession: profile && profile.profession,
     },
+    enableReinitialize: true,
     onSubmit: async (values) => {
       try {
+        setIsLoading(true);
         const result = await authService.editProfile(
           values.nationality,
           values.gender,
@@ -64,13 +77,11 @@ const EditProfileContainer = () => {
           values.name,
           values.city,
           values.profession,
-          values.familyStatus
+          values.marriage_status
         );
         console.log(result);
         navigate("/profile", { replace: true });
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
     },
   });
 
@@ -97,29 +108,10 @@ const EditProfileContainer = () => {
               className="app-input"
               id="name"
               name="name"
-              defaultValue={profile && profile.name}
               placeholder="Введите имя"
               onChange={formik.handleChange}
               value={formik.values.name}
             />
-          </li>
-          <li className="app-list__item">
-            <label className="edit-profile__label" htmlFor="nationality">
-              Национальность
-            </label>
-            <select
-              className="app-input"
-              id="nationality"
-              name="nationality"
-              placeholder="Выберите национальность"
-              onChange={formik.handleChange}
-              value={formik.values.nationality}
-            >
-              {nationalities &&
-                nationalities.map((x: any) => (
-                  <option value={x.value}>{x.title}</option>
-                ))}
-            </select>
           </li>
           <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="gender">
@@ -138,28 +130,20 @@ const EditProfileContainer = () => {
           </li>
 
           <li className="app-list__item">
-            <label className="edit-profile__label" htmlFor="profession">
+            <label className="edit-profile__label" htmlFor="nationality">
               Введите национальность
             </label>
             <Autocomplete
-              id="country-select-demo"
-              sx={{ width: 300 }}
+              id="nationality"
+              value={formik.values.nationality}
+              inputValue={formik.values.nationality}
               options={nationalities}
               autoHighlight
-              getOptionLabel={(option) => option.title}
-              renderOption={(props, option) => (
-                <Box component="li" {...props} value={option.value}>
-                  {option.title}
-                </Box>
-              )}
-              inputValue={inputValue}
-              onInputChange={(_, newInputValue) => {
-                setInputValue(newInputValue);
-                console.log(newInputValue);
+              getOptionLabel={(option) => option}
+              onChange={(e, val) => {
+                formik.setFieldValue("nationality", val);
               }}
-              value={formik.values.nationality}
-              onChange={(val) => {
-                console.log("___", val);
+              onInputChange={(e, val) => {
                 formik.setFieldValue("nationality", val);
               }}
               renderInput={(params) => (
@@ -167,7 +151,6 @@ const EditProfileContainer = () => {
                   {...params}
                   inputProps={{
                     ...params.inputProps,
-                    autoComplete: "new-password", // disable autocomplete and autofill
                   }}
                 />
               )}
@@ -181,7 +164,6 @@ const EditProfileContainer = () => {
             <input
               className="app-input"
               id="profession"
-              defaultValue={undefined}
               name="profession"
               placeholder="Введите профессию.."
               onChange={formik.handleChange}
@@ -196,7 +178,6 @@ const EditProfileContainer = () => {
             <select
               className="app-input"
               id="city"
-              defaultValue={undefined}
               name="city"
               placeholder="Выберите город.."
               onChange={formik.handleChange}
@@ -204,7 +185,9 @@ const EditProfileContainer = () => {
             >
               {cities &&
                 cities.map((x: any) => (
-                  <option value={x.value}>{x.title}</option>
+                  <option key={x.value} value={x.value}>
+                    {x.title}
+                  </option>
                 ))}
             </select>
           </li>
@@ -216,15 +199,16 @@ const EditProfileContainer = () => {
             <select
               className="app-input"
               id="familyStatus"
-              defaultValue={undefined}
               name="familyStatus"
               placeholder="Select family status"
               onChange={formik.handleChange}
-              value={formik.values.familyStatus}
+              value={formik.values.marriage_status}
             >
               {marriageStatuses &&
                 marriageStatuses.map((x: any) => (
-                  <option value={x.value}>{x.title}</option>
+                  <option key={x.value} value={x.value}>
+                    {x.title}
+                  </option>
                 ))}
             </select>
           </li>
@@ -255,6 +239,12 @@ const EditProfileContainer = () => {
           Изменить данные
         </button>
       </form>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 };

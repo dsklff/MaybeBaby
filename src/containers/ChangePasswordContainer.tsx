@@ -1,5 +1,6 @@
+import { Backdrop, CircularProgress } from "@mui/material";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../services/authService";
 
@@ -15,14 +16,14 @@ const validate = (values: any) => {
 
   if (!values.newPassword) {
     errors.password = "*Обязательно";
-  } else if (values.newPassword.length < 8 && values.newPassword.length > 50) {
+  } else if (values.newPassword.length < 8 || values.newPassword.length > 50) {
     errors.newPassword = "*Длина пароля должна составлять от 8 до 50 символов";
   }
 
   if (!values.passwordConfirm) {
     errors.password = "*Обязательно";
   } else if (
-    values.passwordConfirm.length < 8 &&
+    values.passwordConfirm.length < 8 ||
     values.passwordConfirm.length > 50
   ) {
     errors.passwordConfirm =
@@ -40,6 +41,7 @@ const validate = (values: any) => {
 
 const ChangePasswordContainer = () => {
   let navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -52,6 +54,7 @@ const ChangePasswordContainer = () => {
     validate,
     onSubmit: async (values) => {
       try {
+        setIsLoading(true);
         const result = await authService
           .changePassword(
             values.currentPassword,
@@ -119,6 +122,12 @@ const ChangePasswordContainer = () => {
           Сменить пароль
         </button>
       </form>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 };

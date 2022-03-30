@@ -57,9 +57,7 @@ const ProfileContainer = () => {
           </li>
           <li className="app-list__item">
             <span>Национальность: </span>
-            {profile &&
-              nationalities.find((x) => x.value === profile.nationality) &&
-              nationalities.find((x) => x.value === profile.nationality)!.title}
+            {profile && nationalities.find((x) => x === profile.nationality)}
           </li>
           <li className="app-list__item">
             <span>Дата рождения: </span>

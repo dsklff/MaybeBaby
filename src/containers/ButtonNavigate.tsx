@@ -109,6 +109,12 @@ const LabelBottomNavigation = () => {
               onClick={() => navigate("/myresults", { replace: true })}
             />
             <BottomNavigationAction
+              label="Справочник"
+              value="guide"
+              icon={<UserIcon />}
+              onClick={() => navigate("/guide", { replace: true })}
+            />
+            <BottomNavigationAction
               label="Профиль"
               value="profile"
               icon={<UserIcon />}

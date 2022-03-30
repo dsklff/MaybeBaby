@@ -64,7 +64,15 @@ const TestContainer = () => {
     const errors: any = {};
 
     if (values.option_id === null || values.value == "") {
-      errors.option_id = "Answer is Required";
+      errors.option_id = "Ответ обязателен";
+    }
+
+    if (currentOrder === 2 && values.value > 210) {
+      errors.option_id = "Рост должен быть не больше 210 см";
+    }
+
+    if (currentOrder === 3 && values.value > 150) {
+      errors.option_id = "Вес должен быть не больше 150 кг";
     }
 
     return errors;
@@ -265,7 +273,7 @@ const TestContainer = () => {
           <img
             src={ArrowIcon}
             alt="arrow"
-            onClick={() => navigate("/", { replace: true })}
+            onClick={() => navigate("/starttest", { replace: true })}
           />
         </button>
         <h1 className="app-title">Анкета</h1>

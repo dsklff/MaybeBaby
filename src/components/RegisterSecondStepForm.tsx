@@ -1,6 +1,6 @@
 import { MobileDatePicker } from "@mui/lab";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import { TextField } from "@mui/material";
+import { Autocomplete, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import moment from "moment";
 import React from "react";
@@ -61,20 +61,24 @@ const RegisterSecondStepForm = () => {
             <label className="edit-profile__label" htmlFor="nationality">
               Национальность
             </label>
-            <select
-              className="app-input"
+            <Autocomplete
               id="nationality"
-              defaultValue={undefined}
-              name="nationality"
-              placeholder="Выберите национальность.."
-              onChange={formik.handleChange}
               value={formik.values.nationality}
-            >
-              <option value="-1" label="Выбрать.."></option>
-              {nationalities.map((x) => (
-                <option value={x.value}>{x.title}</option>
-              ))}
-            </select>
+              options={nationalities}
+              autoHighlight
+              getOptionLabel={(option) => option}
+              onChange={(e, val) => {
+                formik.setFieldValue("nationality", val);
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  inputProps={{
+                    ...params.inputProps,
+                  }}
+                />
+              )}
+            />
           </li>
           <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="gender">
@@ -104,7 +108,7 @@ const RegisterSecondStepForm = () => {
             >
               <MobileDatePicker
                 label="Дата Рождения"
-                inputFormat="MM/dd/yyyy"
+                inputFormat="dd/MM/yyyy"
                 value={formik.values.dob}
                 onChange={(val) => {
                   console.log("___", val);
@@ -117,7 +121,7 @@ const RegisterSecondStepForm = () => {
         </ul>
 
         <button className="app-btn" type="submit">
-          Изменить данные
+          Сохранить данные
         </button>
       </form>
     </div>

@@ -92,6 +92,9 @@ const LoginContainer = () => {
       <button className="action-btn action-btn--center">
         <Link to="/signup">Зарегистрироваться</Link>
       </button>
+      <button className="action-btn action-btn--center">
+        <Link to="/forgotpassword">Сменить пароль</Link>
+      </button>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={isLoading}

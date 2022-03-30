@@ -5,12 +5,20 @@ const API_URL = "https://api.maybebaby.kz/api/";
 
 
 const register = async (email: any, password: any, passwordConfirm: any) => {
-  return await axios.post(API_URL + "register", {
-    email,
-    password,
-    password_confirmation: passwordConfirm,
-    device_name: 'deviceName'
-  });
+        const response = await axios.post(API_URL + "register", {
+            email,
+            password,
+            password_confirmation: passwordConfirm,
+            device_name: 'deviceName'
+          }).then((response) => response.status)
+          .catch((error) => {
+              if(error.response.status === 422) {
+                  alert("Данная почта уже используется")
+              }
+          })
+         
+         return response;
+  
 };
 
 const login = async (email: any, password: any) => {
@@ -25,6 +33,7 @@ const login = async (email: any, password: any) => {
           if (response.status === 200 && response.data.token) {
             localStorage.setItem("token", JSON.stringify(response.data.token));
           } else if (response.status === 422) {
+              console.log(response.data)
               alert("Неправильный логин и/или пароль")
           }
          
@@ -118,7 +127,7 @@ const changePassword = async (currentPassword: any, newPassword: any, newPasswor
         return;
     }
     const response = await axios
-        .put(API_URL + "user", {password: currentPassword, newPassword: newPassword, newPassword_confirmation: newPasswordConfirm}, {
+        .post(API_URL + "user/password-change", {password: currentPassword, newPassword: newPassword, newPassword_confirmation: newPasswordConfirm}, {
             headers: {
                 'Authorization': `Bearer ${JSON.parse(token)}`
             }  
