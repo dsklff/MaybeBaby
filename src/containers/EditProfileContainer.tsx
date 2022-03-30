@@ -126,6 +126,7 @@ const EditProfileContainer = () => {
               value={formik.values.gender}
             >
               <option value={0} label="Женский"></option>
+              <option value={1} label="Мужской"></option>
             </select>
           </li>
 
@@ -148,6 +149,7 @@ const EditProfileContainer = () => {
               }}
               renderInput={(params) => (
                 <TextField
+                  sx={{ fontWeight: 400 }}
                   {...params}
                   inputProps={{
                     ...params.inputProps,

@@ -1,4 +1,11 @@
 .my-result {
+}
+
+.my-result__wrapper {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 44px 16px 0px;
   background-image: url("../static/img/result-circle-blue.png"),
     url("../static/img/circle-left-center.png"),
     url("../static/img/result-circle-pinkpng.png");
@@ -33,7 +40,6 @@
 }
 
 .my-result__date {
-  margin-bottom: 24px;
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
@@ -117,5 +123,7 @@
 
 .my-result__back {
   background-color: #fff;
-  padding-bottom: 40px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
 }

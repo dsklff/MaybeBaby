@@ -5,6 +5,10 @@
   background-repeat: no-repeat, no-repeat;
 }
 
+.edit-profile input.MuiOutlinedInput-input {
+  font-weight: 400;
+}
+
 .edit-profile__form {
   display: flex;
   flex-direction: column;
