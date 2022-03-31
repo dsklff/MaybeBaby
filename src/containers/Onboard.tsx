@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Pagination, SwiperOptions } from "swiper";
@@ -21,6 +21,15 @@ const Onboarding = () => {
   let navigate = useNavigate();
   const [my_swiper, set_my_swiper] = useState<any>({});
   const swiper = useSwiper();
+
+  // switch (key) {
+  //   case value:
+  //     break;
+
+  //   default:
+  //     break;
+  // }
+  // useEffect(() => {});
 
   return (
     <div className="background-onboarding">

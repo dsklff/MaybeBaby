@@ -1,11 +1,12 @@
-.my-result {
+.my-result-section ~ .app-navigation {
+  display: none;
 }
 
 .my-result__wrapper {
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
-  padding: 44px 16px 0px;
+  padding: 44px 16px 9px;
   background-image: url("../static/img/result-circle-blue.png"),
     url("../static/img/circle-left-center.png"),
     url("../static/img/result-circle-pinkpng.png");
@@ -15,7 +16,7 @@
 
 .my-result__header {
   position: relative;
-  margin-bottom: 48px;
+  margin-bottom: 38px;
   height: 48px;
   font-weight: bold;
   text-align: center;
@@ -47,7 +48,7 @@
 }
 
 .my-result__items {
-  padding: 0 10px;
+  padding: 16px 24px 24px;
 }
 
 .my-result__item {
@@ -84,8 +85,8 @@
 .my-result__recomendation {
   position: relative;
   margin-bottom: 48px;
-  padding: 24px 24px 28px;
-  border: 2px solid #3c88f8;
+  padding: 16px 24px 24px;
+  border: 2px solid #6767ab;
   border-radius: 12px;
 }
 
@@ -95,23 +96,19 @@
   right: -2px;
 }
 
-.recomandation__title {
-  padding-bottom: 16px;
+.recomendation__title {
+  padding: 0 0 16px;
   border-bottom: 1px solid #d7dade;
-}
-
-.recomendation__subtitle {
-  padding: 24px 0 16px;
-}
-
-.recomendation__item {
-  display: flex;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a2a2e;
 }
 
 .my-result__btn {
   padding: 15px 0;
   width: 100%;
-  background: #c1e7ff;
+  background-color: #dee0fa;
   border-radius: 12px;
 
   font-weight: bold;
@@ -126,4 +123,5 @@
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
+  padding: 24px 16px 80px;
 }

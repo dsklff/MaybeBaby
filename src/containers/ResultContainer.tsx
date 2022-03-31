@@ -42,21 +42,21 @@ const ResultContainer = () => {
 
   const renderResults = () => {
     return (
-      <div>
+      <ul>
         {results &&
           results.results!.map((x) => (
-            <li key={x.result} className="my-result__item">
-              <h3 className="my-result__title">{x.question}</h3>
-              <h4 className="my-result__subtitle">{x.response}</h4>
-              <p className="my-result__text">{x.result}</p>
+            <li key={x.result}>
+              <h3>{x.question}</h3>
+              <h4>{x.response}</h4>
+              <p>{x.result}</p>
             </li>
           ))}
-      </div>
+      </ul>
     );
   };
 
   return (
-    <>
+    <section className="my-result-section">
       <div className="background-result">
         <div className="my-result__wrapper">
           <h1 className="my-result__header">
@@ -75,36 +75,14 @@ const ResultContainer = () => {
       </div>
 
       <div className="my-result__back">
-        <ul className="my-result__items">{renderResults()}</ul>
-
         <div className="my-result__recomendation recomendation">
           <img
             className="recomendation__icon"
             src={BlueMessage}
             alt="blue-message"
           />
-          <h2 className="recomendation__title">Рекомендация</h2>
-          <h3 className="recomendation__subtitle">
-            Пройти комплексное обследование
-          </h3>
-
-          <ul>
-            <li className="recomendation__item">
-              <span>1. </span>
-              <span>
-                сдать кровь на базовые гормоны: АМГ, ЛГ, ФСГ, ТТГ, Пролактин,
-                Тестостерон
-              </span>
-            </li>
-            <li className="recomendation__item">
-              <span>2. </span>
-              <span>проверить проходимость труб при наличии партнера</span>
-            </li>
-            <li className="recomendation__item">
-              <span>3. </span>
-              <span>сдать спермограмму, морфология спермы, MAR-тест</span>
-            </li>
-          </ul>
+          <h2 className="recomendation__title">Результаты</h2>
+          {renderResults()}
         </div>
 
         <button
@@ -114,7 +92,7 @@ const ResultContainer = () => {
           Вернуться на главную
         </button>
       </div>
-    </>
+    </section>
   );
 };
 

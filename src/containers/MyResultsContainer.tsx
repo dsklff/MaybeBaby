@@ -43,9 +43,9 @@ const MyResultsContainer = () => {
 
   const renderResults = () => {
     return (
-      <div>
+      <>
         {results?.length !== 0 ? (
-          <div>
+          <>
             {results?.map((x) => (
               <li
                 key={x.date}
@@ -57,12 +57,12 @@ const MyResultsContainer = () => {
                   })
                 }
               >
-                <h2 className="result__title">
-                  {moment(x.date).format("DD-MM-YYYY")}
-                </h2>
-                <h3 className="result__subtitle"></h3>
+                <h2 className="result__title">Тест #</h2>
+                <span className="result__date">
+                  {moment(x.date).format("DD.MM.YYYY")}
+                </span>
                 <button className="result__btn">
-                  <span className="result__text">3 фактора риска</span>
+                  <span className="result__text">Посмотреть</span>
                   <img
                     className="result__img"
                     src={arrowBlue}
@@ -71,7 +71,7 @@ const MyResultsContainer = () => {
                 </button>
               </li>
             ))}
-          </div>
+          </>
         ) : (
           <div
             style={{
@@ -83,7 +83,7 @@ const MyResultsContainer = () => {
             Нет результатов
           </div>
         )}
-      </div>
+      </>
     );
   };
 
