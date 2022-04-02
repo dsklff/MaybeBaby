@@ -6,7 +6,7 @@
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
-  padding: 44px 16px 9px;
+  padding: 44px 16px 10px;
   background-image: url("../static/img/result-circle-blue.png"),
     url("../static/img/circle-left-center.png"),
     url("../static/img/result-circle-pinkpng.png");
@@ -124,4 +124,8 @@
   max-width: 500px;
   margin: 0 auto;
   padding: 24px 16px 80px;
+}
+
+.my-result__list {
+  padding: 24px 0 0;
 }

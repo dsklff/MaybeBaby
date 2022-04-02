@@ -11,7 +11,7 @@ import "swiper/css/pagination";
 import Slider1 from "../static/img/slide-1.png";
 import Slider2 from "../static/img/slide-2.png";
 import Slider3 from "../static/img/slide-3.png";
-import Slider4 from "../static/img/slide-1.png";
+import Slider4 from "../static/img/slide-4.png";
 import ArrowForward from "../static/img/button-circle.png";
 import "../styles/Onboarding.css";
 import { useNavigate } from "react-router-dom";
@@ -81,7 +81,7 @@ const Onboarding = () => {
               </h1>
             </SwiperSlide>
             <SwiperSlide>
-              <img src={Slider1} alt="slide" className="onboarding__img" />
+              <img src={Slider4} alt="slide" className="onboarding__img" />
               <h1 className="onboarding__title">
                 Пополнить знания в области репродуктивного здоровья
               </h1>
