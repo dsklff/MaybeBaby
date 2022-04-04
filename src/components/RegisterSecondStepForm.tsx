@@ -16,13 +16,36 @@ import "../material.css";
 const RegisterSecondStepForm = () => {
   let navigate = useNavigate();
 
+  const validate = (values: any) => {
+    const errors: any = {};
+
+    if (values.gender === null) {
+      errors.gender = "Выберите пол";
+    }
+
+    if (!values.nationality) {
+      errors.nationality = "Выберите национальность";
+    }
+
+    if (!values.name) {
+      errors.name = "Введите имя";
+    }
+
+    if (!values.dob) {
+      errors.dob = "Введите дату рождения";
+    }
+
+    return errors;
+  };
+
   const formik = useFormik({
     initialValues: {
       name: "",
       nationality: "",
       dob: "",
-      gender: "",
+      gender: null,
     },
+    validate,
     onSubmit: async (values) => {
       try {
         const result = await authService.registerSecondStep(
@@ -56,6 +79,7 @@ const RegisterSecondStepForm = () => {
               onChange={formik.handleChange}
               value={formik.values.name}
             />
+            {formik.errors.name ? <div>{formik.errors.name}</div> : null}
           </li>
           <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="nationality">
@@ -79,6 +103,9 @@ const RegisterSecondStepForm = () => {
                 />
               )}
             />
+            {formik.errors.nationality ? (
+              <div>{formik.errors.nationality}</div>
+            ) : null}
           </li>
           <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="dob">
@@ -99,6 +126,7 @@ const RegisterSecondStepForm = () => {
                 renderInput={(params) => <TextField {...params} />}
               />
             </LocalizationProvider>
+            {formik.errors.dob ? <div>{formik.errors.dob}</div> : null}
           </li>
           <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="gender">
@@ -117,12 +145,24 @@ const RegisterSecondStepForm = () => {
               <option value={0} label="Женский"></option>
             </select> */}
             <div className="app-list__sex">
-              <button className="app-choice" disabled>
+              <button
+                className="app-choice"
+                disabled
+                onClick={() => formik.setFieldValue("gender", 1)}
+              >
                 Мужской
               </button>
-              <button className="app-choice app-choice--selected">
+              <button
+                className={
+                  formik.values.gender === 0
+                    ? "app-choice app-choice--selected"
+                    : "app-choice"
+                }
+                onClick={() => formik.setFieldValue("gender", 0)}
+              >
                 Женский
               </button>
+              {formik.errors.gender ? <div>{formik.errors.gender}</div> : null}
             </div>
           </li>
         </ul>

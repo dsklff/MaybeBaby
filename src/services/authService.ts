@@ -98,7 +98,10 @@ const editProfile = async (nationality: any, gender: any, dob: any, name: any, c
         .put(API_URL + "user", {name: name, nationality: nationality, gender: gender, dob: dob, city: city, profession: profession, marriage_status: marriage_status}, {
             headers: {
                 'Authorization': `Bearer ${JSON.parse(token)}`
-            }  
+            } 
+    }).catch(e => {
+        console.log(e.response.data);
+        alert(e.response.data);
     });
     
     return response;
@@ -115,6 +118,9 @@ const registerSecondStep = async (nationality: any, gender: any, dob: any, name:
             headers: {
                 'Authorization': `Bearer ${JSON.parse(token)}`
             }  
+    }).catch(e => {
+        console.log(e.response.data);
+        alert(e.response.data.errors.dob[0]);
     });
     
     return response;
