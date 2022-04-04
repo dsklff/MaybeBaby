@@ -30,17 +30,7 @@ const RegisterContainer = () => {
     }
   };
 
-  return (
-    <div className="app-container signup">
-      <h1 className="app-title">Регистрация</h1>
-      <h2 className="app-subtitle">Добро пожаловать...</h2>
-      {renderSwitch(step)}
-      <p className="account">Уже есть аккаунт?</p>
-      <button className="action-btn action-btn--center">
-        <Link to="/login">Войти</Link>
-      </button>
-    </div>
-  );
+  return <div className="app-container signup">{renderSwitch(step)}</div>;
 };
 
 export default RegisterContainer;

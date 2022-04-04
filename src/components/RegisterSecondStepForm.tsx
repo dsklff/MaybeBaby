@@ -1,20 +1,30 @@
 import { MobileDatePicker } from "@mui/lab";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import { Autocomplete, TextField } from "@mui/material";
+import {
+  Autocomplete,
+  Backdrop,
+  CircularProgress,
+  TextField,
+} from "@mui/material";
 import { useFormik } from "formik";
 import moment from "moment";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../services/authService";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import ruLocale from "date-fns/locale/ru";
-import { nationalities } from "../common/dictionaries";
+import {
+  cities,
+  marriageStatuses,
+  nationalities,
+} from "../common/dictionaries";
 
 import "../styles/common-styles.css";
 import "../material.css";
 
 const RegisterSecondStepForm = () => {
   let navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const validate = (values: any) => {
     const errors: any = {};
@@ -35,7 +45,35 @@ const RegisterSecondStepForm = () => {
       errors.dob = "Введите дату рождения";
     }
 
+    if (getAge(values.dob) < 18) {
+      errors.dob = "Возраст должен составлять минимум 18 лет";
+    }
+
+    if (!values.city) {
+      errors.city = "Выберите город";
+    }
+
+    if (!values.profession) {
+      errors.profession = "Введите профессию";
+    }
+
+    if (!values.marriage_status) {
+      errors.marriage_status = "Выберите семейное положение";
+    }
+
     return errors;
+  };
+
+  const getAge = (dateString: any) => {
+    console.log(dateString);
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
   };
 
   const formik = useFormik({
@@ -44,19 +82,30 @@ const RegisterSecondStepForm = () => {
       nationality: "",
       dob: "",
       gender: null,
+      city: "",
+      marriage_status: "",
+      profession: "",
     },
     validate,
+    validateOnBlur: false,
+    validateOnChange: false,
     onSubmit: async (values) => {
       try {
-        const result = await authService.registerSecondStep(
+        setIsLoading(true);
+        const result = await authService.editProfile(
           values.nationality,
           values.gender,
           moment(values.dob).format("YYYY-MM-DD hh:mm:ss"),
-          values.name
+          values.name,
+          values.city,
+          values.profession,
+          values.marriage_status
         );
+        setIsLoading(false);
         console.log(result);
         navigate("/starttest", { replace: true });
       } catch (e) {
+        setIsLoading(false);
         console.log(e);
       }
     },
@@ -162,8 +211,71 @@ const RegisterSecondStepForm = () => {
               >
                 Женский
               </button>
-              {formik.errors.gender ? <div>{formik.errors.gender}</div> : null}
             </div>
+            {formik.errors.gender ? <div>{formik.errors.gender}</div> : null}
+          </li>
+
+          <li className="app-list__item">
+            <label className="edit-profile__label" htmlFor="profession">
+              Введите профессию
+            </label>
+            <input
+              className="app-input"
+              id="profession"
+              name="profession"
+              placeholder="Введите профессию.."
+              onChange={formik.handleChange}
+              value={formik.values.profession}
+            />
+            {formik.errors.profession ? (
+              <div>{formik.errors.profession}</div>
+            ) : null}
+          </li>
+
+          <li className="app-list__item">
+            <label className="edit-profile__label" htmlFor="city">
+              Выберите город
+            </label>
+            <select
+              className="app-input"
+              id="city"
+              name="city"
+              placeholder="Выберите город.."
+              onChange={formik.handleChange}
+              value={formik.values.city}
+            >
+              {cities &&
+                cities.map((x: any) => (
+                  <option key={x.value} value={x.value}>
+                    {x.title}
+                  </option>
+                ))}
+            </select>
+            {formik.errors.city ? <div>{formik.errors.city}</div> : null}
+          </li>
+
+          <li className="app-list__item">
+            <label className="edit-profile__label" htmlFor="marriage_status">
+              Семейное положение
+            </label>
+            <select
+              className="app-input"
+              id="marriage_status"
+              name="marriage_status"
+              placeholder="Выберите семейное положение"
+              onChange={formik.handleChange}
+              value={formik.values.marriage_status}
+            >
+              {marriageStatuses &&
+                marriageStatuses.map((x: any) => (
+                  <option key={x.value} value={x.value}>
+                    {x.title}
+                  </option>
+                ))}
+            </select>
+            {formik.errors.marriage_status ? (
+              <div>{formik.errors.marriage_status}</div>
+            ) : null}
           </li>
         </ul>
 
@@ -171,6 +283,12 @@ const RegisterSecondStepForm = () => {
           Сохранить данные
         </button>
       </form>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 };

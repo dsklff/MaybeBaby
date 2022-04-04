@@ -56,6 +56,56 @@ const EditProfileContainer = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   let navigate = useNavigate();
 
+  const validate = (values: any) => {
+    const errors: any = {};
+
+    if (values.gender !== 0 && values.gender !== 1) {
+      errors.gender = "Выберите пол";
+    }
+
+    if (!values.nationality) {
+      errors.nationality = "Выберите национальность";
+    }
+
+    if (!values.name) {
+      errors.name = "Введите имя";
+    }
+
+    if (!values.dob) {
+      errors.dob = "Введите дату рождения";
+    }
+
+    if (getAge(values.dob) < 18) {
+      errors.dob = "Возраст должен составлять минимум 18 лет";
+    }
+
+    if (!values.city) {
+      errors.city = "Выберите город";
+    }
+
+    if (!values.profession) {
+      errors.profession = "Введите профессию";
+    }
+
+    if (!values.marriage_status) {
+      errors.marriage_status = "Выберите семейное положение";
+    }
+
+    return errors;
+  };
+
+  const getAge = (dateString: any) => {
+    console.log(dateString);
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  };
+
   const formik = useFormik({
     initialValues: {
       name: profile && profile.name,
@@ -67,6 +117,9 @@ const EditProfileContainer = () => {
       profession: profile && profile.profession,
     },
     enableReinitialize: true,
+    validate,
+    validateOnChange: false,
+    validateOnBlur: false,
     onSubmit: async (values) => {
       try {
         setIsLoading(true);
@@ -112,6 +165,7 @@ const EditProfileContainer = () => {
               onChange={formik.handleChange}
               value={formik.values.name}
             />
+            {formik.errors.name ? <div>{formik.errors.name}</div> : null}
           </li>
           <li className="app-list__item">
             <label className="edit-profile__label" htmlFor="gender">
@@ -126,8 +180,8 @@ const EditProfileContainer = () => {
               value={formik.values.gender}
             >
               <option value={0} label="Женский"></option>
-              <option value={1} label="Мужской"></option>
             </select>
+            {formik.errors.gender ? <div>{formik.errors.gender}</div> : null}
           </li>
 
           <li className="app-list__item">
@@ -157,6 +211,9 @@ const EditProfileContainer = () => {
                 />
               )}
             />
+            {formik.errors.nationality ? (
+              <div>{formik.errors.nationality}</div>
+            ) : null}
           </li>
 
           <li className="app-list__item">
@@ -171,6 +228,9 @@ const EditProfileContainer = () => {
               onChange={formik.handleChange}
               value={formik.values.profession}
             />
+            {formik.errors.profession ? (
+              <div>{formik.errors.profession}</div>
+            ) : null}
           </li>
 
           <li className="app-list__item">
@@ -192,17 +252,18 @@ const EditProfileContainer = () => {
                   </option>
                 ))}
             </select>
+            {formik.errors.city ? <div>{formik.errors.city}</div> : null}
           </li>
 
           <li className="app-list__item">
-            <label className="edit-profile__label" htmlFor="familyStatus">
+            <label className="edit-profile__label" htmlFor="marriage_status">
               Семейное положение
             </label>
             <select
               className="app-input"
-              id="familyStatus"
-              name="familyStatus"
-              placeholder="Select family status"
+              id="marriage_status"
+              name="marriage_status"
+              placeholder="Выберите семейное положение"
               onChange={formik.handleChange}
               value={formik.values.marriage_status}
             >
@@ -213,6 +274,9 @@ const EditProfileContainer = () => {
                   </option>
                 ))}
             </select>
+            {formik.errors.marriage_status ? (
+              <div>{formik.errors.marriage_status}</div>
+            ) : null}
           </li>
 
           <li className="app-list__item">
@@ -234,6 +298,7 @@ const EditProfileContainer = () => {
                 renderInput={(params) => <TextField {...params} />}
               />
             </LocalizationProvider>
+            {formik.errors.dob ? <div>{formik.errors.dob}</div> : null}
           </li>
         </ul>
 

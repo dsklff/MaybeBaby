@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import authService from "../services/authService";
 
 import TextField from "@mui/material/TextField";
@@ -9,6 +9,7 @@ import Checkbox from "@mui/material/Checkbox";
 import "../styles/common-styles.css";
 import "../material.css";
 import { copyFileSync } from "fs";
+import { Backdrop, CircularProgress } from "@mui/material";
 
 interface Props {
   nextStep: () => void;
@@ -17,6 +18,7 @@ interface Props {
 const RegisterFirstStepForm = (props: Props) => {
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const validate = (values: any) => {
     const errors: any = {};
@@ -57,6 +59,7 @@ const RegisterFirstStepForm = (props: Props) => {
     validate,
     onSubmit: async (values) => {
       try {
+        setIsLoading(true);
         const response = await authService.register(
           values.email,
           values.password,
@@ -68,13 +71,10 @@ const RegisterFirstStepForm = (props: Props) => {
           props.nextStep();
         }
 
-        console.log("aaa");
-        console.log(response);
         formik.resetForm();
-
-        // await authService.login(values.email, values.password);
-        // props.nextStep();
+        setIsLoading(false);
       } catch (e) {
+        setIsLoading(false);
         console.log(e);
       }
     },
@@ -82,6 +82,8 @@ const RegisterFirstStepForm = (props: Props) => {
 
   return (
     <div className="register-first">
+      <h1 className="app-title">Регистрация</h1>
+      <h2 className="app-subtitle">Добро пожаловать...</h2>
       <form onSubmit={formik.handleSubmit}>
         <TextField
           id="email"
@@ -135,6 +137,16 @@ const RegisterFirstStepForm = (props: Props) => {
           Подтвердить
         </button>
       </form>
+      <p className="account">Уже есть аккаунт?</p>
+      <button className="action-btn action-btn--center">
+        <Link to="/login">Войти</Link>
+      </button>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 };

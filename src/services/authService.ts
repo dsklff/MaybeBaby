@@ -41,7 +41,8 @@ const login = async (email: any, password: any) => {
         });
     } catch (error: any) {
         if(error.response.status === 422) {
-            alert("Неправильный логин и/или пароль")
+            console.log(error.response.data)
+            alert(error.response.data.errors.email[0])
         }
     }
 
