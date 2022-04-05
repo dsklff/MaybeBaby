@@ -42,7 +42,6 @@ const MainProfile = () => {
             <span className="main-profile__text">Условия соглашения</span>
           </button>
         </div>
-        <LabelBottomNavigation></LabelBottomNavigation>
       </div>
     </div>
   );

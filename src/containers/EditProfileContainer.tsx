@@ -150,7 +150,7 @@ const EditProfileContainer = () => {
 
   return (
     <div className="app-container edit-profile">
-      <h1 className="app-title">Изменить профиль</h1>
+      <h1 className="app-title">Личные данные</h1>
       <form className="edit-profile__form" onSubmit={formik.handleSubmit}>
         <ul className="app-wrapper app-list">
           <li className="app-list__item">
@@ -180,6 +180,7 @@ const EditProfileContainer = () => {
               value={formik.values.gender}
             >
               <option value={0} label="Женский"></option>
+              <option value={1} label="Мужской"></option>
             </select>
             {formik.errors.gender ? <div>{formik.errors.gender}</div> : null}
           </li>
@@ -303,7 +304,7 @@ const EditProfileContainer = () => {
         </ul>
 
         <button className="app-btn" type="submit">
-          Изменить данные
+          Сохранить
         </button>
       </form>
       <Backdrop

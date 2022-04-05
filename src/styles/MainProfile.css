@@ -7,7 +7,7 @@
 .main-profile__list {
   display: flex;
   flex-direction: column;
-  padding: 180px 0 0;
+  padding: 210px 0 0;
 }
 
 .main-profile__btn {
@@ -28,4 +28,11 @@
   font-size: 15px;
   line-height: 20px;
   color: #1a2a2e;
+}
+
+.main-profile__info {
+  margin-bottom: 12px;
+  padding: 22px 19px;
+  background-color: #fff;
+  border-radius: 16px;
 }
