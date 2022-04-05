@@ -45,7 +45,7 @@ const MyResultsContainer = () => {
     return (
       <>
         {results?.length !== 0 ? (
-          <>
+          <ul>
             {results?.map((x) => (
               <li
                 key={x.date}
@@ -71,7 +71,7 @@ const MyResultsContainer = () => {
                 </button>
               </li>
             ))}
-          </>
+          </ul>
         ) : (
           <div
             style={{
@@ -94,7 +94,7 @@ const MyResultsContainer = () => {
   return (
     <div className="background-result">
       <div className="app-container result">
-        <ul className="result__list">{renderResults()}</ul>
+        <div className="result__list">{renderResults()}</div>
         <button onClick={() => logOut()}></button>
       </div>
       <Backdrop

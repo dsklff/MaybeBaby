@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import CloseBtn from "../static/svg/close.svg";
 import BlueMessage from "../static/img/blue-message.png";
+import AnalyzeBtn from "../static/img/analyze-btn.png";
 
 import "../styles/ResultContainer.css";
 import mainService from "../services/mainService";
@@ -53,6 +54,8 @@ const MyResultsDetailContainer = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const [active, setActive] = useState<boolean>(false);
+
   useEffect(() => {
     loadResults();
   }, []);
@@ -73,13 +76,13 @@ const MyResultsDetailContainer = () => {
 
   const renderResults = () => {
     return (
-      <ul className="my-result__list">
+      <ul className="my-result__list" onClick={() => handleOpen()}>
         {results &&
           results.results!.map((x) => (
-            <li key={x.result}>
-              <h3>{x.question}</h3>
-              <h4>{x.response}</h4>
-              <p>{x.result}</p>
+            <li key={x.result} className="my-result__item">
+              <h3 className="my-result__title">{x.question}</h3>
+              <h4 className="my-result__subtitle">{x.response}</h4>
+              <p className="my-result__text">{x.result}</p>
             </li>
           ))}
       </ul>
@@ -133,10 +136,7 @@ const MyResultsDetailContainer = () => {
           <CircularProgress color="inherit" />
         </Backdrop>
 
-        <div
-          className="my-result__recomendation recomendation"
-          onClick={() => handleOpen()}
-        >
+        <div className="my-result__recomendation recomendation">
           <img
             className="recomendation__icon"
             src={BlueMessage}
@@ -144,6 +144,42 @@ const MyResultsDetailContainer = () => {
           />
           <h2 className="recomendation__title">Результаты</h2>
           {renderResults()}
+
+          <div className="recomendation__accordion">
+            <div
+              className={
+                active
+                  ? "recomendation__content--active"
+                  : "recomendation__content "
+              }
+            >
+              <h2 className="recomendation__title recomendation__title--no-border">
+                Как сдавать анализы
+              </h2>
+              <p className="recomendation__text">
+                У вас поздний репродуктивный возраст и низкий овариальный
+                резерв. Торопитесь, время не ждет! Шансы забеременеть
+                уменьшаются с каждым днем У вас поздний репродуктивный возраст и
+                низкий овариальный резерв. Торопитесь, время не ждет! Шансы
+                забеременеть уменьшаются с каждым днем
+              </p>
+            </div>
+            <button
+              className="recomendation__analyze-btn"
+              onClick={() => {
+                setActive(!active);
+              }}
+            >
+              <span>
+                {active ? "Скрыть подсказку" : "Как сдавать анализы?"}
+              </span>
+              <img
+                src={AnalyzeBtn}
+                alt="pink-btn"
+                className={active ? "arrow-up" : "arrow-down"}
+              />
+            </button>
+          </div>
         </div>
 
         <button
