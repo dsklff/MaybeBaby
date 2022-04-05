@@ -118,7 +118,7 @@ const LabelBottomNavigation = () => {
               label="Профиль"
               value="profile"
               icon={<UserIcon />}
-              onClick={() => navigate("/profile", { replace: true })}
+              onClick={() => navigate("/mainprofile", { replace: true })}
             />
           </BottomNavigation>
         </div>

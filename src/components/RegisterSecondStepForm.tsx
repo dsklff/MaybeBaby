@@ -113,6 +113,8 @@ const RegisterSecondStepForm = () => {
 
   return (
     <div className="register-second">
+      <h1 className="app-title">Анкетные данные</h1>
+      <h2 className="app-subtitle">Пожалуйста заполните анкетные данные</h2>
       <form className="edit-profile__form" onSubmit={formik.handleSubmit}>
         <ul className="app-wrapper app-list">
           <li className="app-list__item">
@@ -280,7 +282,7 @@ const RegisterSecondStepForm = () => {
         </ul>
 
         <button className="app-btn" type="submit">
-          Сохранить данные
+          Подтвердить
         </button>
       </form>
       <Backdrop
