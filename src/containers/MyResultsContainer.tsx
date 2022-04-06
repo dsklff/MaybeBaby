@@ -45,33 +45,36 @@ const MyResultsContainer = () => {
     return (
       <>
         {results?.length !== 0 ? (
-          <ul>
-            {results?.map((x) => (
-              <li
-                key={x.date}
-                className="result__item"
-                onClick={() =>
-                  navigate("/myresultdetails", {
-                    replace: true,
-                    state: { date: x.date },
-                  })
-                }
-              >
-                <h2 className="result__title">Тест #</h2>
-                <span className="result__date">
-                  {moment(x.date).format("DD.MM.YYYY")}
-                </span>
-                <button className="result__btn">
-                  <span className="result__text">Посмотреть</span>
-                  <img
-                    className="result__img"
-                    src={arrowBlue}
-                    alt="arrow-blue"
-                  />
-                </button>
-              </li>
-            ))}
-          </ul>
+          <>
+            {results?.map((x, i) => {
+              const num = i + 1;
+              return (
+                <li
+                  key={x.date}
+                  className="result__item"
+                  onClick={() =>
+                    navigate("/myresultdetails", {
+                      replace: true,
+                      state: { date: x.date },
+                    })
+                  }
+                >
+                  <h2 className="result__title">Тест #{num}</h2>
+                  <span className="result__date">
+                    {moment(x.date).format("DD.MM.YYYY")}
+                  </span>
+                  <button className="result__btn">
+                    <span className="result__text">Посмотреть</span>
+                    <img
+                      className="result__img"
+                      src={arrowBlue}
+                      alt="arrow-blue"
+                    />
+                  </button>
+                </li>
+              );
+            })}
+          </>
         ) : (
           <div
             style={{
@@ -94,7 +97,7 @@ const MyResultsContainer = () => {
   return (
     <div className="background-result">
       <div className="app-container result">
-        <div className="result__list">{renderResults()}</div>
+        <ul className="result__list">{renderResults()}</ul>
         <button onClick={() => logOut()}></button>
       </div>
       <Backdrop

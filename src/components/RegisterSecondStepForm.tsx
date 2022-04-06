@@ -49,7 +49,7 @@ const RegisterSecondStepForm = () => {
       errors.dob = "Возраст должен составлять минимум 18 лет";
     }
 
-    if (!values.city) {
+    if (!values.city || values.city === -1) {
       errors.city = "Выберите город";
     }
 
@@ -57,7 +57,7 @@ const RegisterSecondStepForm = () => {
       errors.profession = "Введите профессию";
     }
 
-    if (!values.marriage_status) {
+    if (!values.marriage_status || values.marriage_status === -1) {
       errors.marriage_status = "Выберите семейное положение";
     }
 
@@ -86,9 +86,9 @@ const RegisterSecondStepForm = () => {
       marriage_status: "",
       profession: "",
     },
-    validate,
     validateOnBlur: false,
     validateOnChange: false,
+    validate,
     onSubmit: async (values) => {
       try {
         setIsLoading(true);
@@ -246,6 +246,7 @@ const RegisterSecondStepForm = () => {
               onChange={formik.handleChange}
               value={formik.values.city}
             >
+              <option value={-1} label="Выбрать.." selected={true}></option>
               {cities &&
                 cities.map((x: any) => (
                   <option key={x.value} value={x.value}>
@@ -268,6 +269,7 @@ const RegisterSecondStepForm = () => {
               onChange={formik.handleChange}
               value={formik.values.marriage_status}
             >
+              <option value={-1} label="Выбрать.." selected={true}></option>
               {marriageStatuses &&
                 marriageStatuses.map((x: any) => (
                   <option key={x.value} value={x.value}>

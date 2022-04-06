@@ -18,14 +18,12 @@ const MainProfile = () => {
         </button>
 
         <div className="main-profile__list">
-          <button className="main-profile__btn">
+          <button
+            className="main-profile__btn"
+            onClick={() => navigate("/profile", { replace: true })}
+          >
             <img src={Person} alt="person" />
-            <span
-              className="main-profile__text"
-              onClick={() => navigate("/profile", { replace: true })}
-            >
-              Личные данные
-            </span>
+            <span className="main-profile__text">Личные данные</span>
           </button>
           <button
             className="main-profile__btn"
@@ -36,7 +34,7 @@ const MainProfile = () => {
           </button>
           <button
             className="main-profile__btn"
-            onClick={() => navigate("/policy", { replace: true })}
+            onClick={() => navigate("/profilepolicy", { replace: true })}
           >
             <img src={Policy} alt="person" />
             <span className="main-profile__text">Условия соглашения</span>

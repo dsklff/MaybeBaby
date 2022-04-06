@@ -133,12 +133,17 @@ const changePassword = async (currentPassword: any, newPassword: any, newPasswor
     if(!token) {
         return;
     }
+ 
     const response = await axios
         .post(API_URL + "user/password-change", {password: currentPassword, newPassword: newPassword, newPassword_confirmation: newPasswordConfirm}, {
             headers: {
                 'Authorization': `Bearer ${JSON.parse(token)}`
-            }  
-    });
+            }}).then((response) => response.status)
+            .catch((error) => {
+                if(error.response.status === 422) {
+                    alert("Неверный пароль")
+                }
+            })
     
     return response;
 }
