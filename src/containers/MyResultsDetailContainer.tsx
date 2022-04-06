@@ -157,6 +157,36 @@ const MyResultsDetailContainer = () => {
           <h2 className="recomendation__title">Результаты</h2>
           {renderResults()}
 
+          <h2 className="recomendation__title">Рекомендации</h2>
+
+          <div className="recomendation__info">
+            <p>
+              При отсутствии беременности рекомендуем Вам пройти комплексное
+              обследование:
+            </p>
+            <ul className="recomendation__list">
+              <li className="recomendation__item">
+                <span>1.</span>
+                <p>
+                  сдать кровь на базовые гормоны: АМГ, ЛГ, ФСГ, ТТГ, Пролактин,
+                  Тестостерон
+                </p>
+              </li>
+              <li className="recomendation__item">
+                <span>2.</span>
+                <p> проверить проходимость труб</p>
+              </li>
+              <li className="recomendation__item">
+                <span>3.</span>
+                <p>
+                  при наличии партнера сдать спермограмму, морфологию спермы,
+                  MAR-тест/у вас высокий овариальный резерв, но время не ждет!
+                  Ваши репродуктивные возможности снижаются с каждым днем!
+                </p>
+              </li>
+            </ul>
+          </div>
+
           <div className="recomendation__accordion">
             <div
               className={

@@ -176,3 +176,34 @@
   transform: translateX(-50%) rotate(0);
   bottom: 0;
 }
+
+.recomendation__info {
+  padding: 32px 0 0;
+}
+
+.recomendation__info > p {
+  margin-bottom: 25px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #1a2a2e;
+}
+
+.recomendation__item {
+  display: flex;
+}
+
+.recomendation__item span {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #1a2a2e;
+  margin-right: 5px;
+}
+
+.recomendation__item p {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #1a2a2e;
+}

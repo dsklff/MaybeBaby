@@ -58,3 +58,8 @@ input.MuiOutlinedInput-input {
   line-height: 22px;
   color: #1a2a2e;
 }
+
+.MuiBox-root.css-1wnsr1i {
+  max-width: 400px;
+  width: 95%;
+}
