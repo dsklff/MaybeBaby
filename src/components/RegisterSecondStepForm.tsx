@@ -183,18 +183,6 @@ const RegisterSecondStepForm = () => {
             <label className="edit-profile__label" htmlFor="gender">
               Пол
             </label>
-            {/* <select
-              className="app-input"
-              id="gender"
-              defaultValue={undefined}
-              name="gender"
-              placeholder="Выберите пол.."
-              onChange={formik.handleChange}
-              value={formik.values.gender}
-            >
-              <option value={-1} label="Выбрать.."></option>
-              <option value={0} label="Женский"></option>
-            </select> */}
             <div className="app-list__sex">
               <button
                 className="app-choice"

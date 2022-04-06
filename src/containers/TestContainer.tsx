@@ -16,6 +16,7 @@ import "../styles/common-styles.css";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import RequireAuth from "../components/RequireAuth";
+import authService from "../services/authService";
 
 interface Option {
   id: number;
@@ -58,7 +59,18 @@ const TestContainer = () => {
   const [questionCount, setQuestionCount] = useState<number>(0);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const today = new Date().toLocaleDateString();
+
+  const [profile, setProfile] = useState<any>(undefined);
+
+  const loadProfile = async () => {
+    setIsLoading(true);
+    const result = await authService.getProfile();
+    setProfile(result && result.data);
+    formik.setFieldValue("value", result && result?.data.dob);
+    formik.setFieldValue("option_id", 1);
+    console.log(result);
+    setIsLoading(false);
+  };
 
   const validate = (values: any) => {
     const errors: any = {};
@@ -183,6 +195,7 @@ const TestContainer = () => {
 
   useEffect(() => {
     (async () => {
+      await loadProfile();
       await loadQuestions().then(() => {
         console.log(questions);
       });
@@ -237,8 +250,7 @@ const TestContainer = () => {
           <MobileDatePicker
             label="Введите дату"
             inputFormat="dd/MM/yyyy"
-            maxDate={today}
-            value={formik.values.value}
+            value={profile && profile.dob}
             onChange={(val) => {
               formik.setFieldValue("value", val);
               formik.setFieldValue("option_id", option.id);

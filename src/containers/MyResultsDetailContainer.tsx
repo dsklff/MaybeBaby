@@ -60,6 +60,18 @@ const MyResultsDetailContainer = () => {
     loadResults();
   }, []);
 
+  // const loadResults = async () => {
+  //   const results = await mainService.getTestResults();
+
+  //   const result =
+  //     results &&
+  //     results.data.results.reduce((prev: any, current: any) =>
+  //       prev.date > current.date ? prev : current
+  //     );
+
+  //   setResults(result);
+  // };
+
   const loadResults = async () => {
     setIsLoading(true);
     const results = await mainService.getTestResultsByQuery(date.toString());
@@ -159,9 +171,7 @@ const MyResultsDetailContainer = () => {
               <p className="recomendation__text">
                 У вас поздний репродуктивный возраст и низкий овариальный
                 резерв. Торопитесь, время не ждет! Шансы забеременеть
-                уменьшаются с каждым днем У вас поздний репродуктивный возраст и
-                низкий овариальный резерв. Торопитесь, время не ждет! Шансы
-                забеременеть уменьшаются с каждым днем
+                уменьшаются с каждым днем.
               </p>
             </div>
             <button
