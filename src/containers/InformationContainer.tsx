@@ -45,8 +45,8 @@ const InformationContainer = () => {
           <li className="info__item">
             <h3 className="info__title">Что ожидать после прохождения?</h3>
             <p className="info__text">
-              Заполнение ответов займет у вас не более 2 минут, ответ вы
-              получите моментально.
+              Вы получите информацию о вашем репродуктивном здоровье на данный
+              момент.
             </p>
           </li>
           <li className="info__item">
