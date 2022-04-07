@@ -87,7 +87,7 @@ export default function CircularStatic() {
     console.log("asdasd");
 
     setTimeout(() => {
-      navigate("/myresultdetails", { replace: true });
+      navigate("/result", { replace: true });
     }, 10000);
 
     return () => {
