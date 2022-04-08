@@ -9,6 +9,8 @@ body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   margin: 0;
+  height: 100vh;
+  height: -webkit-fill-available;
 }
 
 h1,

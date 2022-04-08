@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import routes from "./common/routes";
@@ -35,6 +35,14 @@ const appRoutes = routes.map((i: any, index: number) => (
 ));
 
 function App() {
+  // useEffect(() => {
+  //   const appHeight = () => {
+  //     const doc = document.documentElement;
+  //     doc.style.setProperty(" — app-height", `${window.innerHeight}px`);
+  //   };
+  //   window.addEventListener("resize", appHeight);
+  //   appHeight();
+  // });
   return (
     <>
       <BrowserRouter>

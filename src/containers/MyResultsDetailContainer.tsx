@@ -88,7 +88,7 @@ const MyResultsDetailContainer = () => {
 
   const renderResults = () => {
     return (
-      <ul className="my-result__list" onClick={() => handleOpen()}>
+      <ul className="my-result__list">
         {results &&
           results.results!.map((x) => (
             <li key={x.result} className="my-result__item">
