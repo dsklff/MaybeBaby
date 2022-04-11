@@ -59,7 +59,7 @@ export default function CustomizedAccordions() {
     };
 
   return (
-    <div className="app-container accordeon">
+    <div className="app-container app-container--navigation accordeon">
       <div className="title-wrapper">
         <button
           className="arrow-btn"

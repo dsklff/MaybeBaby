@@ -17,7 +17,7 @@ import "../styles/InformationContainer.css";
 const InformationContainer = () => {
   let navigate = useNavigate();
   return (
-    <div className="app-container info">
+    <div className="app-container app-container--navigation info">
       <div className="app-wrapper">
         <button
           className="arrow-btn"

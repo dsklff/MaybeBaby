@@ -93,6 +93,7 @@ const LabelBottomNavigation = () => {
       location.pathname !== "/policy" &&
       location.pathname !== "/splashscreen" &&
       location.pathname !== "/onboarding" &&
+      location.pathname !== "/percentprogress" &&
       location.pathname !== "/" ? (
         <div className="app-navigation">
           <BottomNavigation value={value} onChange={handleChange}>

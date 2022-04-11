@@ -22,6 +22,8 @@ import {
 import "../styles/common-styles.css";
 import "../material.css";
 
+import "../styles/RegisterSecondStep.css";
+
 const RegisterSecondStepForm = () => {
   let navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);

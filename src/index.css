@@ -206,3 +206,16 @@ span.MuiLinearProgress-bar {
 .progress-bar__number--opacity {
   opacity: 0.5;
 }
+
+@media (max-height: 667px) {
+  .policy {
+    margin-top: 38px;
+  }
+  .app-btn {
+    margin-top: 22px;
+  }
+
+  .account {
+    margin-top: 22px;
+  }
+}

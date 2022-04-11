@@ -96,7 +96,7 @@ const MyResultsContainer = () => {
 
   return (
     <div className="background-result">
-      <div className="app-container result">
+      <div className="app-container app-container--navigation result">
         <ul className="result__list">{renderResults()}</ul>
         <button onClick={() => logOut()}></button>
       </div>

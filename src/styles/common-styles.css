@@ -1,6 +1,13 @@
 .app-container {
   max-width: 375px;
   margin: 0 auto;
+  padding: 44px 16px 0px;
+  min-height: 100vh;
+}
+
+.app-container--navigation {
+  max-width: 375px;
+  margin: 0 auto;
   padding: 44px 16px 120px;
   min-height: 100vh;
 }
@@ -123,4 +130,20 @@ span.MuiBottomNavigationAction-label.Mui-selected {
   font-size: 11px;
   line-height: 14px;
   color: #6767ab;
+}
+
+@media (max-height: 667px) {
+  .app-title {
+    margin-bottom: 25px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .app-subtitle {
+    margin-bottom: 38px;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+    color: #1a2a2e;
+  }
 }

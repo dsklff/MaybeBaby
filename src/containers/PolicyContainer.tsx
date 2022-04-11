@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 
 import Checkbox from "@mui/material/Checkbox";
@@ -38,7 +38,7 @@ const Policy = () => {
   }, [isChecked]);
 
   return (
-    <div className="app-container">
+    <div className="app-container app-container--navigation">
       <img className="policy__img" src={PolciyImg} alt="policy" />
       <h1 className="policy__title">Условия пользования</h1>
       <p className="policy__text">

@@ -33,7 +33,7 @@ const Onboarding = () => {
 
   return (
     <div className="background-onboarding">
-      <div className="app-container onboarding">
+      <div className="app-container app-container--navigation onboarding">
         <div className="onboarding__buttons">
           <button className="onboarding__btn onboarding__btn--active">
             Ру

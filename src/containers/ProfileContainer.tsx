@@ -37,7 +37,7 @@ const ProfileContainer = () => {
 
   return (
     <div className="background-start">
-      <div className="app-container main-profile">
+      <div className="app-container app-container--navigation main-profile">
         <div className="app-wrapper">
           <div className="main-profile__list">
             <div className="main-profile__info">
