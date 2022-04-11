@@ -91,7 +91,13 @@ const Onboarding = () => {
 
         <button
           className="onboarding__forward"
-          onClick={() => my_swiper.slideNext()}
+          onClick={() => {
+            if (my_swiper.isEnd) {
+              navigate("/policy", { replace: true });
+            } else {
+              my_swiper.slideNext();
+            }
+          }}
         >
           <img src={ArrowForward} alt="arrow" />
         </button>

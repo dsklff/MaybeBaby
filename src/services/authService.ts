@@ -32,11 +32,8 @@ const login = async (email: any, password: any) => {
         .then((response) => {
           if (response.status === 200 && response.data.token) {
             localStorage.setItem("token", JSON.stringify(response.data.token));
-          } else if (response.status === 422) {
-              console.log(response.data)
-              alert("Неправильный логин и/или пароль")
           }
-         
+          
           return response.data;
         });
     } catch (error: any) {

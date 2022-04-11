@@ -83,8 +83,16 @@ const TestContainer = () => {
       errors.option_id = "Рост должен быть не больше 210 см";
     }
 
+    if (currentOrder === 2 && values.value < 0) {
+      errors.option_id = "Рост не может быть отрицательным";
+    }
+
     if (currentOrder === 3 && values.value > 150) {
       errors.option_id = "Вес должен быть не больше 150 кг";
+    }
+
+    if (currentOrder === 3 && values.value < 0) {
+      errors.option_id = "Вес не может быть отрицательным";
     }
 
     return errors;

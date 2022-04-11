@@ -13,10 +13,6 @@ const MainProfile = () => {
   return (
     <div className="background-start">
       <div className="app-container main-profile">
-        <button className="options-btn">
-          <img src={Settings} alt="settings" />
-        </button>
-
         <div className="main-profile__list">
           <button
             className="main-profile__btn"

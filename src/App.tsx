@@ -26,6 +26,8 @@ import CircularStatic from "./components/PercentProgress";
 import InformationContainer from "./containers/InformationContainer";
 import ProfilePolicyContainer from "./containers/ProfilePolicyContainer";
 
+import Div100vh from "react-div-100vh";
+
 const appRoutes = routes.map((i: any, index: number) => (
   <Route
     path={i.path}
@@ -35,16 +37,8 @@ const appRoutes = routes.map((i: any, index: number) => (
 ));
 
 function App() {
-  // useEffect(() => {
-  //   const appHeight = () => {
-  //     const doc = document.documentElement;
-  //     doc.style.setProperty(" — app-height", `${window.innerHeight}px`);
-  //   };
-  //   window.addEventListener("resize", appHeight);
-  //   appHeight();
-  // });
   return (
-    <>
+    <Div100vh>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<SplashScreenContainer />}></Route>
@@ -93,7 +87,7 @@ function App() {
         </Routes>
         <LabelBottomNavigation />
       </BrowserRouter>
-    </>
+    </Div100vh>
   );
 }
 

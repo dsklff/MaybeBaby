@@ -39,15 +39,6 @@ const ProfileContainer = () => {
     <div className="background-start">
       <div className="app-container main-profile">
         <div className="app-wrapper">
-          {/* <button
-            className="arrow-btn"
-            onClick={() => navigate("/starttest", { replace: true })}
-          >
-            <img src={ArrowIcon} alt="arrow" />
-          </button> */}
-          <button className="options-btn">
-            <img src={Settings} alt="settings" />
-          </button>
           <div className="main-profile__list">
             <div className="main-profile__info">
               <ul className="app-list">
